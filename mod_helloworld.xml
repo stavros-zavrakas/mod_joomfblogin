@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Hello, World!</name>
+    <author>John Doe</author>
+    <version>1.0.0</version>
+    <description>A simple Hello, World! module.</description>
+    <files>
+        <filename>mod_helloworld.xml</filename>
+        <filename module="mod_helloworld">mod_helloworld.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+    <media folder="media" destination="mod_helloworld">
+            <!-- filename>logo.png</filename>
+            <folder>css</folder -->
+            <folder>js</folder>
+    </media>
+    <config>
+            <fields name="params">
+                <fieldset name="advanced">
+                    <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"
+                    />
+
+                    <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"
+                    />
+                    
+                    <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"
+                    />
+                    
+                    <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"
+                    />
+                </fieldset>
+            </fields>
+    </config>
+</extension>
