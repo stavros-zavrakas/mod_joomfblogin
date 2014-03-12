@@ -11,7 +11,7 @@
 			echo "'" . $fb_app_id . "'"; 
 			$document = JFactory::getDocument();
 
-			$document->addScript(JURI::root() . 'media/mod_helloworld/js/functions.js');
+			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/functions.js');
 		} else {
 			echo "Critical Error!";
 		}
