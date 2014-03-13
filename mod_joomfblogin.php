@@ -29,5 +29,14 @@ $facebook = new Facebook(array(
 ));
 $fbuser = $facebook->getUser();
 
+if ($fbuser && $isGuest) 
+{
+	$fbButton = '<div class="login facebook-login"> Facebook Login </div>';
+}
+else
+{
+
+}
+
 require(JModuleHelper::getLayoutPath( 'mod_joomfblogin'));
 ?>

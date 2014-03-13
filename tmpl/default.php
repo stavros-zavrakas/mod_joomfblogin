@@ -20,11 +20,7 @@
 				$document->addScriptDeclaration('var fbAppId = ' . $fbAppId);
 				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
 				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
-				?>
-				<div class="login facebook-login">
-					Facebook Login
-				</div>
-				<?php
+				echo $fbButton;
 			} 
 			else 
 			{

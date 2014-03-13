@@ -19,7 +19,7 @@ window.fbAsyncInit = function() {
         {
             var accessToken = response.authResponse.accessToken;
             FB.api('/me', function(response) {
-                alert(response);
+                window.location.href=document.URL;
             });
         } 
         else
