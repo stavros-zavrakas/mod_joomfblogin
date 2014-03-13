@@ -11,12 +11,18 @@
 			echo "'" . $fb_app_id . "'"; 
 			$document = JFactory::getDocument();
 
+			$document->addScriptDeclaration('var fbAppId = ' . $fb_app_id);
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
-			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/functions.js');
+			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
+			?>
+			<div class="login facebook-login">
+				Facebook Login
+			</div>
+			<?php
 		} else {
 			echo "Critical Error!";
 		}
 	?>
-
+	<div id="fb-root"></div>
 	<div> <?php echo $params->get('posttext'); ?> </div>
 </div>
