@@ -7,7 +7,9 @@
 	<div> <?php echo $params->get('pretext'); ?> </div>
 
 	<?php 
-		if(!empty($fb_app_id)) {
+		if( empty($fb_app_id) || empty($fb_app_secret) ) {
+			echo "Critical Error!";
+		} else {
 			echo "'" . $fb_app_id . "'"; 
 			$document = JFactory::getDocument();
 
@@ -19,8 +21,6 @@
 				Facebook Login
 			</div>
 			<?php
-		} else {
-			echo "Critical Error!";
 		}
 	?>
 	<div id="fb-root"></div>

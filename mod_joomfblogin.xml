@@ -22,17 +22,15 @@
     <config>
             <fields name="params">
                 <fieldset name="advanced">
-                    <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"
-                    />
+                    <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
 
-                    <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"
-                    />
+                    <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
+
+                    <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
                     
-                    <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"
-                    />
+                    <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
                     
-                    <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"
-                    />
+                    <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
                 </fieldset>
             </fields>
     </config>

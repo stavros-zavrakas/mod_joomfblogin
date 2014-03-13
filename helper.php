@@ -23,5 +23,16 @@ class modHelloWorldHelper
     {
         return $params->get('fb_app_id');
     }
+
+    /**
+     * Retrieves the hello message
+     *
+     * @param array $params An object containing the module parameters
+     * @access public
+     */    
+    public static function getFbAppSecret( $params )
+    {
+        return $params->get('fb_app_secret');
+    }
 }
 ?>
