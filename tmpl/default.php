@@ -1,5 +1,5 @@
 <?php // no direct access
-	defined( '_JEXEC' ) or die( 'Restricted access' ); 
+	defined('_JEXEC') or die('Restricted access'); 
 ?>
 
 <div class="<?php echo $params->get('moduleclass_sfx'); ?>">
@@ -7,19 +7,29 @@
 	<div> <?php echo $params->get('pretext'); ?> </div>
 
 	<?php 
-		if( empty($fbAppId) || empty($fbAppSecret) ) {
+		if (empty($fbAppId) || empty($fbAppSecret)) 
+		{
 			echo "Critical Error!";
-		} else {
-			$document = JFactory::getDocument();
+		} 
+		else 
+		{
+			if ($isGuest) 
+			{
+				$document = JFactory::getDocument();
 
-			$document->addScriptDeclaration('var fbAppId = ' . $fbAppId);
-			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
-			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
-			?>
-			<div class="login facebook-login">
-				Facebook Login
-			</div>
-			<?php
+				$document->addScriptDeclaration('var fbAppId = ' . $fbAppId);
+				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
+				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
+				?>
+				<div class="login facebook-login">
+					Facebook Login
+				</div>
+				<?php
+			} 
+			else 
+			{
+				// @todo: display user data and logout button.
+			}
 		}
 	?>
 	<div id="fb-root"></div>

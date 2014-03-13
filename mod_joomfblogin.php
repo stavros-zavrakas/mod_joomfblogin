@@ -13,15 +13,15 @@
  */
  
 // no direct access
-defined( '_JEXEC' ) or die( 'Restricted access' );
+defined('_JEXEC') or die('Restricted access');
 // Include the syndicate functions only once
-require_once( dirname(__FILE__).'/helper.php' );
-require_once( dirname(__FILE__).'/src/facebook.php' );
+require_once(dirname(__FILE__).'/helper.php');
+require_once(dirname(__FILE__).'/src/facebook.php');
  
 $user = JFactory::getUser();
-$isGuest = modJoomFacebookLoginHelper::getParamName( $user, 'guest' );
-$fbAppId = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_id' );
-$fbAppSecret = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_secret' );
+$isGuest = modJoomFacebookLoginHelper::getParamName($user, 'guest');
+$fbAppId = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_id');
+$fbAppSecret = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_secret');
 
 $facebook = new Facebook(array(
 	'appId'  => $fbAppId,
@@ -29,5 +29,5 @@ $facebook = new Facebook(array(
 ));
 $fbuser = $facebook->getUser();
 
-require( JModuleHelper::getLayoutPath( 'mod_joomfblogin' ) );
+require(JModuleHelper::getLayoutPath( 'mod_joomfblogin'));
 ?>

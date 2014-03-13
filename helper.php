@@ -20,7 +20,7 @@ class modJoomFacebookLoginHelper
      * @param string $name The name of the parameter that we want to retrieve
      * @access public
      */    
-    public static function getParamName( $params, $name )
+    public static function getParamName($params, $name)
     {
         return $params->get($name);
     }

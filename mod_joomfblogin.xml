@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>Hello, World!</name>
-    <author>John Doe</author>
+    <name>JoomFacebookLogin!</name>
+    <author>Stavros Zavrakas</author>
     <version>1.0.0</version>
-    <description>A simple Hello, World! module.</description>
+    <description>A simple module that allows the users to login to a Joomla! website using Facebook.</description>
     <files>
         <filename>mod_joomfblogin.xml</filename>
         <filename module="mod_joomfblogin">mod_joomfblogin.php</filename>
@@ -20,18 +20,18 @@
             <folder>js</folder>
     </media>
     <config>
-            <fields name="params">
-                <fieldset name="advanced">
-                    <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
+        <fields name="params">
+            <fieldset name="advanced">
+                <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
 
-                    <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
+                <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
 
-                    <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
-                    
-                    <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
-                    
-                    <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
-                </fieldset>
-            </fields>
+                <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
+                
+                <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
+                
+                <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
+            </fieldset>
+        </fields>
     </config>
 </extension>
