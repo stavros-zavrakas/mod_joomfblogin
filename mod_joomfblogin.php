@@ -19,13 +19,13 @@ require_once( dirname(__FILE__).'/helper.php' );
 require_once( dirname(__FILE__).'/src/facebook.php' );
  
 $user = JFactory::getUser();
-$isGuest = $user->get('guest');
-$fb_app_id = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_id' );
-$fb_app_secret = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_secret' );
+$isGuest = modJoomFacebookLoginHelper::getParamName( $user, 'guest' );
+$fbAppId = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_id' );
+$fbAppSecret = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_secret' );
 
 $facebook = new Facebook(array(
-	'appId'  => $fb_app_id,
-	'secret' => $fb_app_secret,
+	'appId'  => $fbAppId,
+	'secret' => $fbAppSecret,
 ));
 $fbuser = $facebook->getUser();
 
