@@ -14,25 +14,15 @@
 class modJoomFacebookLoginHelper
 {
     /**
-     * Retrieves the hello message
+     * Retrieves the a param, depending on the name that the function accepts as name.
      *
      * @param array $params An object containing the module parameters
+     * @param string $name The name of the parameter that we want to retrieve
      * @access public
      */    
-    public static function getFbAppId( $params )
+    public static function getParamName( $params, $name )
     {
-        return $params->get('fb_app_id');
-    }
-
-    /**
-     * Retrieves the hello message
-     *
-     * @param array $params An object containing the module parameters
-     * @access public
-     */    
-    public static function getFbAppSecret( $params )
-    {
-        return $params->get('fb_app_secret');
+        return $params->get($name);
     }
 }
 ?>

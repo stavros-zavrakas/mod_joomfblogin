@@ -16,12 +16,12 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 // Include the syndicate functions only once
 require_once( dirname(__FILE__).'/helper.php' );
-require_once dirname(__FILE__).'/src/facebook.php';
+require_once( dirname(__FILE__).'/src/facebook.php' );
  
 $user = JFactory::getUser();
 $isGuest = $user->get('guest');
-$fb_app_id = modJoomFacebookLoginHelper::getFbAppId( $params );
-$fb_app_secret = modJoomFacebookLoginHelper::getFbAppSecret( $params );
+$fb_app_id = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_id' );
+$fb_app_secret = modJoomFacebookLoginHelper::getParamName( $params, 'fb_app_secret' );
 
 $facebook = new Facebook(array(
 	'appId'  => $fb_app_id,
