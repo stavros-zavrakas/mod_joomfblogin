@@ -10,7 +10,6 @@
 		if( empty($fb_app_id) || empty($fb_app_secret) ) {
 			echo "Critical Error!";
 		} else {
-			echo "'" . $fb_app_id . "'"; 
 			$document = JFactory::getDocument();
 
 			$document->addScriptDeclaration('var fbAppId = ' . $fb_app_id);

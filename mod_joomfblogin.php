@@ -19,35 +19,15 @@ require_once( dirname(__FILE__).'/helper.php' );
 require_once dirname(__FILE__).'/src/facebook.php';
  
 $user = JFactory::getUser();
-$fb_app_id = modHelloWorldHelper::getFbAppId( $params );
-$fb_app_secret = modHelloWorldHelper::getFbAppSecret( $params );
+$isGuest = $user->get('guest');
+$fb_app_id = modJoomFacebookLoginHelper::getFbAppId( $params );
+$fb_app_secret = modJoomFacebookLoginHelper::getFbAppSecret( $params );
 
 $facebook = new Facebook(array(
 	'appId'  => $fb_app_id,
 	'secret' => $fb_app_secret,
 ));
 $fbuser = $facebook->getUser();
-echo $fbuser . " ; " . $user->guest;
-
-// if ($fbuser && $user->guest ) {
-// 	try {
-// 		$user_profile = $facebook->api('/me');
-// 		$isjoomlauser = modJLVFacebookLoginHelper::getJoomlaId($user_profile['email']);
-// 		if((int)$isjoomlauser==0) {
-// 			jimport( 'joomla.user.helper' );
-// 			$password = JUserHelper::genRandomPassword(5);
-// 			$joomlauser = modJLVFacebookLoginHelper::addJoomlaUser($user_profile['name'], $user_profile['username'], $password, $user_profile['email']);
-// 		}
-// 		else {
-// 			$joomlauser = JFactory::getUser($isjoomlauser);
-// 		}
-// 		modJLVFacebookLoginHelper::loginFb($joomlauser,$return);
-// 	}
-// 	catch (FacebookApiException $e) {
-// 		error_log($e);
-// 		$fbuser = null;
-// 	}
-// }
 
 require( JModuleHelper::getLayoutPath( 'mod_joomfblogin' ) );
 ?>
