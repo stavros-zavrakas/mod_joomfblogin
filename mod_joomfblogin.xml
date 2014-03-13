@@ -13,8 +13,10 @@
         <filename>tmpl/index.html</filename>
     </files>
     <media folder="media" destination="mod_joomfblogin">
-            <!-- filename>logo.png</filename>
-            <folder>css</folder -->
+            <!-- 
+            <filename>logo.png</filename>
+            <folder>css</folder>
+            -->
             <folder>js</folder>
     </media>
     <config>
