@@ -60,7 +60,7 @@ if ($fbuser && $fbAccessToken && $user->guest)
 		}
 		// Login the User
 
-		modJoomFacebookLoginHelper::login($joomlaUser, $referer);
+		modJoomFacebookLoginHelper::login($joomlaUser, $referer, $fbuser, $fbAccessToken);
 	}
 	catch (FacebookApiException $e) {
 		// error_log($e);

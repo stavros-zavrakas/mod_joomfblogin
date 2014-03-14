@@ -29,7 +29,7 @@ class modJoomFacebookLoginHelper
 
     public static function getUserIdByParam($param, $email) {
         $db     = JFactory::getDbo();
-        $query = "SELECT id FROM #__users WHERE " . $param . "='".$email."';";
+        $query = "SELECT id FROM #__users WHERE " . $param . "='" . $email . "';";
         $db->setQuery($query);
         $jUser = $db->loadResult();
         
@@ -95,22 +95,22 @@ class modJoomFacebookLoginHelper
         return $user;
     }
 
-    public static function login($fbuser, $redirect) {
+    public static function login($joomlaUser, $redirect, $fbuser, $fbAccessToken) {
         $db     = JFactory::getDbo();
-        $query = "SELECT password FROM #__users WHERE id='".$fbuser->id."';";
+        $query = "SELECT password FROM #__users WHERE id='" . $joomlaUser->id . "';";
         $db->setQuery($query);
         $oldpass = $db->loadResult();
 
-        jimport( 'joomla.user.helper' );
+        jimport('joomla.user.helper');
         $password = JUserHelper::genRandomPassword(5);
-        $query = "UPDATE #__users SET password='".md5($password)."' WHERE id='".$fbuser->id."';";
+        $query = "UPDATE #__users SET password='" . md5($password) . "' WHERE id='" . $joomlaUser->id . "';";
         $db->setQuery($query);
         $db->query();
         
         $app = JFactory::getApplication();
 
         $credentials = array();
-        $credentials['username'] = $fbuser->username;
+        $credentials['username'] = $joomlaUser->username;
         $credentials['password'] = $password;
 
         $options = array();
@@ -119,10 +119,15 @@ class modJoomFacebookLoginHelper
 
         $app->login($credentials, $options);
         
-        $query = "UPDATE #__users SET password='".$oldpass."' WHERE id='".$fbuser->id."';";
+        $query = "UPDATE #__users SET password='" . $oldpass . "' WHERE id='" . $joomlaUser->id . "';";
         $db->setQuery($query);
         $db->query();
         
+        $user = JFactory::getUser();
+        $user->setParam('fb_uid', $fbuser['id']);
+        $user->setParam('fb_access_token', $fbAccessToken);
+        $user->save();
+
         $app->redirect($redirect);
     }
 }
