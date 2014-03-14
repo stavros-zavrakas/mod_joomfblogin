@@ -12,11 +12,10 @@
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
+    <languages>
+        <language tag="en-GB">language/en-GB.mod_joomfblogin.ini</language>
+    </languages>
     <media folder="media" destination="mod_joomfblogin">
-            <!-- 
-            <filename>logo.png</filename>
-            <folder>css</folder>
-            -->
             <folder>js</folder>
             <folder>img</folder>
     </media>
