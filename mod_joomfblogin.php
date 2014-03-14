@@ -22,11 +22,10 @@ $jInput = JFactory::getApplication()->input;
 $fbAccessToken = $jInput->get('fbAccessToken', null, 'STRING');
 
 $user = JFactory::getUser();
-$isGuest = modJoomFacebookLoginHelper::getParamName($user, 'guest');
 $fbAppId = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_id');
 $fbAppSecret = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_secret');
 $fbButton = '<div class="login facebook-login"> Facebook Login </div>';
-$presentUser = false;
+$referer = modJoomFacebookLoginHelper::getReferer();
 
 $facebook = new Facebook(array(
 	'appId'  => $fbAppId,
@@ -60,7 +59,7 @@ if ($fbuser && $fbAccessToken && $user->guest)
 		}
 		// Login the User
 
-		modJoomFacebookLoginHelper::login($joomlaUser);
+		modJoomFacebookLoginHelper::login($joomlaUser, $referer);
 	}
 	catch (FacebookApiException $e) {
 		// error_log($e);

@@ -36,6 +36,12 @@ class modJoomFacebookLoginHelper
         return $jUser;
     }
 
+    public static function getReferer() {
+        $url = JRequest::getURI();
+
+        return $url;
+    }
+
     public static function registerUser($name, $username, $password, $email) {
         jimport('joomla.application.component.helper');
         $config = JComponentHelper::getParams('com_users');
@@ -64,7 +70,7 @@ class modJoomFacebookLoginHelper
         return $user;
     }
 
-    public static function login($fbuser) {
+    public static function login($fbuser, $redirect) {
         $db     = JFactory::getDbo();
         $query = "SELECT password FROM #__users WHERE id='".$fbuser->id."';";
         $db->setQuery($query);
@@ -92,8 +98,7 @@ class modJoomFacebookLoginHelper
         $db->setQuery($query);
         $db->query();
         
-        // @todo: Where should we redirect?
-        $app->redirect(base64_decode("/"));
+        $app->redirect($redirect);
     }
 }
 ?>
