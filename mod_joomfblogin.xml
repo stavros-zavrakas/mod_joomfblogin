@@ -25,13 +25,9 @@
         <fields name="params">
             <fieldset name="Facebook">
                 <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
-
                 <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
-
-                <field name="pretext" type="textarea" label="Pre Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
-                
-                <field name="posttext" type="textarea" label="Post Text" description="Add your message to the user - Visible before facebook button" cols="30" rows="5"/>
-                
+                <field name="fbButtonText" type="text" label="Facebook Button Text" description="Please enter the text that you want to appear on the facebook button"/>
+                <field name="fbButton" type="filelist" default="04FacebookButtonSmall.png" label="Select the button" description="" directory="media/mod_joomfblogin/img" filter="" exclude="" stripext="" hide_none="true" hide_default="true" />
                 <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
             </fieldset>
         </fields>

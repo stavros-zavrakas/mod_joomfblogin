@@ -5,9 +5,6 @@
 ?>
 
 <div class="<?php echo $params->get('moduleclass_sfx'); ?>">
-	<!-- The fields that exists will be displayed only if are not empty -->
-	<div> <?php echo $params->get('pretext'); ?> </div>
-
 	<?php 
 		if (empty($fbAppId) || empty($fbAppSecret)) 
 		{
@@ -43,5 +40,4 @@
 		}
 	?>
 	<div id="fb-root"></div>
-	<div> <?php echo $params->get('posttext'); ?> </div>
 </div>

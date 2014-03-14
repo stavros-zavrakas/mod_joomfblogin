@@ -22,9 +22,16 @@ $jInput = JFactory::getApplication()->input;
 $fbAccessToken = $jInput->get('fbAccessToken', null, 'STRING');
 
 $user = JFactory::getUser();
+
+$fbButtonText = modJoomFacebookLoginHelper::getParamName($params, 'fbButtonText');
+$fbButtonName = modJoomFacebookLoginHelper::getParamName($params, 'fbButton');
+$fbButtonArgs = modJoomFacebookLoginHelper::getDimensionByImageName($fbButtonName);
+$fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
+$fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
+$fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
+
 $fbAppId = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_id');
 $fbAppSecret = modJoomFacebookLoginHelper::getParamName($params, 'fb_app_secret');
-$fbButton = '<div class="login facebook-login"> Facebook Login </div>';
 $referer = modJoomFacebookLoginHelper::getReferer();
 
 $facebook = new Facebook(array(

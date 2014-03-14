@@ -43,6 +43,21 @@ class modJoomFacebookLoginHelper
         return $url;
     }
 
+    public static function getDimensionByImageName($imageName) 
+    {
+        $fbDimenions = array();
+        $fbDimenions['01FacebookButtonXLarge.png']['width'] = '300px';
+        $fbDimenions['01FacebookButtonXLarge.png']['height'] = '66px';
+        $fbDimenions['02FacebookButtonLarge.png']['width'] = '260px';
+        $fbDimenions['02FacebookButtonLarge.png']['height'] = '57px';
+        $fbDimenions['03FacebookButtonMedium.png']['width'] = '220px';
+        $fbDimenions['03FacebookButtonMedium.png']['height'] = '48px';
+        $fbDimenions['04FacebookButtonSmall.png']['width'] = '180px';
+        $fbDimenions['04FacebookButtonSmall.png']['height'] = '39px';
+
+        return $fbDimenions[$imageName]; 
+    }
+
     public static function registerUser($name, $username, $password, $email) {
         jimport('joomla.application.component.helper');
         $config = JComponentHelper::getParams('com_users');
