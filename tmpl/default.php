@@ -35,6 +35,8 @@
 				$document->addScriptDeclaration('var fbAppId = ' . $fbAppId);
 				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
 				$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
+				$document->addStyleSheet(JURI::root() . 'media/mod_joomfblogin/css/style.css');
+
 				echo $fbButton;
 			}
 		}

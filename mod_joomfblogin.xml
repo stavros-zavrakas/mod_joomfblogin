@@ -19,6 +19,7 @@
     </languages>
     <media folder="media" destination="mod_joomfblogin">
             <folder>js</folder>
+            <folder>css</folder>
             <folder>img</folder>
     </media>
     <config>
