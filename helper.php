@@ -38,6 +38,7 @@ class modJoomFacebookLoginHelper
 
     public static function getReferer() {
         $url = JRequest::getURI();
+        // @todo: write regexpr to delete the fbAccessToken from the URL
 
         return $url;
     }
