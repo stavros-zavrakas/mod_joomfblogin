@@ -38,24 +38,33 @@ class modJoomFacebookLoginHelper
 
     public static function getReferer() {
         $url = JRequest::getURI();
-        // @todo: write regexpr to delete the fbAccessToken from the URL
+        $url = preg_replace('/([?&])fbAccessToken=[^&]+(&|$)/','',$url);
 
-        return $url;
+        return $url[0];
     }
 
     public static function getDimensionByImageName($imageName) 
     {
-        $fbDimenions = array();
-        $fbDimenions['01FacebookButtonXLarge.png']['width'] = '300px';
-        $fbDimenions['01FacebookButtonXLarge.png']['height'] = '66px';
-        $fbDimenions['02FacebookButtonLarge.png']['width'] = '260px';
-        $fbDimenions['02FacebookButtonLarge.png']['height'] = '57px';
-        $fbDimenions['03FacebookButtonMedium.png']['width'] = '220px';
-        $fbDimenions['03FacebookButtonMedium.png']['height'] = '48px';
-        $fbDimenions['04FacebookButtonSmall.png']['width'] = '180px';
-        $fbDimenions['04FacebookButtonSmall.png']['height'] = '39px';
-
+        $fbDimenions = array(
+            '01FacebookButtonXLarge.png' => array('width' => '300px', 'height' => '66px'),
+            '02FacebookButtonLarge.png' => array('width' => '260px', 'height' => '57px'),
+            '03FacebookButtonMedium.png' => array('width' => '220px', 'height' => '48px'),
+            '04FacebookButtonSmall.png' => array('width' => '180px', 'height' => '39px')
+        );
+        
         return $fbDimenions[$imageName]; 
+    }
+
+    public static function generateFacebookButton($params)
+    {
+        $fbButtonText = modJoomFacebookLoginHelper::getParamName($params, 'fbButtonText');
+        $fbButtonName = modJoomFacebookLoginHelper::getParamName($params, 'fbButton');
+        $fbButtonArgs = modJoomFacebookLoginHelper::getDimensionByImageName($fbButtonName);
+        $fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
+        $fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
+        $fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
+
+        return $fbButton;
     }
 
     public static function registerUser($name, $username, $password, $email) {

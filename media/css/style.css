@@ -1,6 +1,14 @@
+.facebook-login {
+	cursor: pointer;
+	color: white;
+}
+
+.facebook-login:hover {
+	text-decoration: underline;
+}
+
 .facebook-text {
 	padding: 5%;
 	text-align: right;
 	font-weight: bold;
-	color: white;
 }
