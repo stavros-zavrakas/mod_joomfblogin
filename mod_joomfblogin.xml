@@ -12,6 +12,7 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <filename>facebookHelper.php</filename>
+        <filename>googleHelper.php</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>

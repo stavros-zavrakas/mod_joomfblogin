@@ -24,12 +24,14 @@
 		{
 			$document = JFactory::getDocument();
 
-			$document->addScriptDeclaration('var fbAppId = ' . $fbAppId);
+			foreach ($socialData as $key => $socialNetwork) {
+				// $document->addScriptDeclaration('var ' . $key . 'isFacebookEnabled = true;');
+				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
+				echo $socialNetwork['button'];
+			}
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
 			$document->addStyleSheet(JURI::root() . 'media/mod_joomfblogin/css/style.css');
-
-			echo $fbButton;
 		}
 	?>
 	<div id="fb-root"></div>

@@ -17,6 +17,7 @@ defined('_JEXEC') or die('Restricted access');
 // Include the syndicate functions only once
 require_once(dirname(__FILE__).'/helper.php');
 require_once(dirname(__FILE__).'/facebookHelper.php');
+require_once(dirname(__FILE__).'/googleHelper.php');
 require_once(dirname(__FILE__).'/src/facebook.php');
  
 $socialEnabled = array();
@@ -25,6 +26,8 @@ $socialEnabled['google'] = modJoomHelper::getParamName($params, 'google_is_enabl
 
 // If we have at least on of the social logins enabled, we need the logic in the if statement.
 if(in_array("1", $socialEnabled, true)) {
+	$socialData = array();
+
 	$jInput = JFactory::getApplication()->input;
 	$loginType = $jInput->get('type', null, 'STRING');
 	$accessToken = $jInput->get('accessToken', null, 'STRING');
@@ -33,26 +36,28 @@ if(in_array("1", $socialEnabled, true)) {
 	$referer = modJoomHelper::getReferer();
 
 	if(isset($socialEnabled['facebook'])) {
-		$fbAppId = modJoomHelper::getParamName($params, 'fb_app_id');
-		$fbAppSecret = modJoomHelper::getParamName($params, 'fb_app_secret');
+		$socialData['facebook'] = array();
+		$socialData['facebook']['appId'] = modJoomHelper::getParamName($params, 'fb_app_id');
+		$socialData['facebook']['appSecret'] = modJoomHelper::getParamName($params, 'fb_app_secret');
 		if($loginType == "facebook") {
-			$facebook = modJoomFacebookLoginHelper::initFacebookSdk($fbAppId, $fbAppSecret);
+			$facebook = modJoomFacebookLoginHelper::initFacebookSdk($socialData['facebook']['appId'], $socialData['facebook']['appSecret']);
 			$fbuser = modJoomFacebookLoginHelper::initFacebookUser($facebook, $accessToken);
 			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook);
 		}
 		else 
 		{
-			$fbButton = modJoomFacebookLoginHelper::generateFacebookButton($params);
+			$socialData['facebook']['button'] = modJoomFacebookLoginHelper::generateFacebookButton($params);
 		}
-		require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
 	}
 
 	if(isset($socialEnabled['google'])) {
-		$googleAppId = modJoomHelper::getParamName($params, 'google_app_id');
-		$googleAppSecret = modJoomHelper::getParamName($params, 'google_app_secret');
+		$socialData['google']['appId'] = modJoomHelper::getParamName($params, 'google_app_id');
+		$socialData['google']['appSecret'] = modJoomHelper::getParamName($params, 'google_app_secret');
 		// @todo: this is exactly what we need:
 		// https://developers.google.com/+/web/signin/redirect-uri-flow
 		
+		$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params);
 	}
+	require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
 }
 ?>
