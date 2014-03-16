@@ -46,6 +46,8 @@ if(in_array("1", $socialEnabled, true)) {
 		}
 		else 
 		{
+			$socialData['facebook']['jsSdk'] = modJoomFacebookLoginHelper::loadFacebookJavascriptSdk();
+			$socialData['facebook']['jsLoginScript'] = modJoomFacebookLoginHelper::generateJsLoginScript($socialData['facebook']['appId']);
 			$socialData['facebook']['button'] = modJoomFacebookLoginHelper::generateFacebookButton($params);
 		}
 	}
@@ -56,7 +58,9 @@ if(in_array("1", $socialEnabled, true)) {
 		// @todo: this is exactly what we need:
 		// https://developers.google.com/+/web/signin/redirect-uri-flow
 		
-		$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params);
+		$socialData['google']['jsSdk'] = modJoomGoogleLoginHelper::loadGoogleJavascriptSdk();
+		$socialData['google']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
+		$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
 	}
 	require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
 }

@@ -15,16 +15,76 @@ class modJoomGoogleLoginHelper
         return $googleDimenions[$imageName]; 
     }
 
-    public static function generateGoogleButton($params)
+    public static function generateGoogleButton($params, $appId)
     {
-        $googleButtonText = modJoomHelper::getParamName($params, 'googleButtonText');
-        $googleButtonName = modJoomHelper::getParamName($params, 'googleButton');
-        $googleButtonArgs = modJoomHelper::getDimensionByImageName($googleButtonName);
-        $googleButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $googleButtonName;
-        $googleButtonStyle = 'style="width: ' . $googleButtonArgs['width'] . '; height: ' . $googleButtonArgs['height'] . '; background-image:url(' . $googleButtonUrl . ');"';
-        $googleButton = '<div class="login" ' . $googleButtonStyle . '><div class="facebook-text">' . $googleButtonText . '</div></div>';
+    	$googleButton  = '<button class="g-signin"';
+	    $googleButton .= 'data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"';
+	    $googleButton .= 'data-requestvisibleactions="http://schemas.google.com/AddActivity"';
+	    $googleButton .= 'data-clientId="' . $appId . '"';
+	    $googleButton .= 'data-accesstype="offline"';
+	    $googleButton .= 'data-callback="onSignInCallback"';
+	    $googleButton .= 'data-theme="dark"';
+	    $googleButton .= 'data-cookiepolicy="single_host_origin">';
+    	$googleButton .= '</button>';
 
         return $googleButton;
     }
+
+    public static function loadGoogleJavascriptSdk()
+    {
+    	$script = '
+    	(function() {
+			var po = document.createElement(\'script\');
+			po.type = \'text/javascript\'; po.async = true;
+			po.src = \'https://plus.google.com/js/client:plusone.js\';
+			var s = document.getElementsByTagName(\'script\')[0];
+			s.parentNode.insertBefore(po, s);
+		})();
+		';
+
+		return $script;
+    }
+
+    public static function generateJsLoginScript()
+    {
+    	$script = '
+    	var helper = (function() {
+			var authResult = undefined;
+
+			return {
+				onSignInCallback: function(authResult) {
+					if (authResult["access_token"]) {
+						// The user is signed in
+						this.authResult = authResult;
+						// After we load the Google+ API, render the profile data from Google+.
+						gapi.client.load("plus","v1",this.renderProfile);
+					} else if (authResult["error"]) {
+						// There was an error, which means the user is not signed in.
+						// As an example, you can troubleshoot by writing to the console:
+						console.log("There was an error: " + authResult["error"]);
+					}
+					console.log("authResult", authResult);
+				},
+
+				renderProfile: function() {
+					var request = gapi.client.plus.people.get( {"userId" : "me"} );
+					request.execute( function(profile) {
+						if (profile.error) {
+							alert(profile.error);
+							return;
+						}
+
+						console.log("profile", profile);
+					});
+				},
+			};
+		})();
+		function onSignInCallback(authResult) {
+			helper.onSignInCallback(authResult);
+		}
+		';
+
+		return $script;
+    } 
 }
 ?>

@@ -23,10 +23,12 @@
 		else 
 		{
 			$document = JFactory::getDocument();
-
 			foreach ($socialData as $key => $socialNetwork) {
 				// $document->addScriptDeclaration('var ' . $key . 'isFacebookEnabled = true;');
 				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
+
+				$document->addScriptDeclaration($socialNetwork['jsSdk']);
+				$document->addScriptDeclaration($socialNetwork['jsLoginScript']);
 				echo $socialNetwork['button'];
 			}
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
