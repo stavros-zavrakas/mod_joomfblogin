@@ -27,10 +27,18 @@
         <fields name="params">
             <fieldset name="Facebook">
                 <field name="fb_is_enabled" type="checkbox" label="Enable Facebook Login" description="Check if you want to enable facebook login for your website" value="true" default="0" />
-                <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
-                <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
+                <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the Facebook Application Secret"/>
+                <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the Facebook Application ID"/>
                 <field name="fbButtonText" type="text" label="Facebook Button Text" description="Please enter the text that you want to appear on the facebook button"/>
                 <field name="fbButton" type="filelist" default="04FacebookButtonSmall.png" label="Select the button" description="" directory="media/mod_joomfblogin/img" filter="" exclude="" stripext="" hide_none="true" hide_default="true" />
+                <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
+            </fieldset>
+            <fieldset name="Google">
+                <field name="google_is_enabled" type="checkbox" label="Enable Google Login" description="Check if you want to enable google login for your website" value="true" default="0" />
+                <field name="google_app_secret" type="text" label="Google App Secret" description="Please enter the Google Application Secret"/>
+                <field name="google_app_id" type="text" label="Google AppId" description="Please enter the Google Application ID"/>
+                <field name="googleButtonText" type="text" label="Google Button Text" description="Please enter the text that you want to appear on the google button"/>
+                <field name="googleButton" type="filelist" default="04FacebookButtonSmall.png" label="Select the button" description="" directory="media/mod_joomfblogin/img" filter="" exclude="" stripext="" hide_none="true" hide_default="true" />
                 <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
             </fieldset>
         </fields>

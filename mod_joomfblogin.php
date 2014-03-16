@@ -46,5 +46,13 @@ if(in_array("1", $socialEnabled, true)) {
 		}
 		require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
 	}
+
+	if(isset($socialEnabled['google'])) {
+		$googleAppId = modJoomHelper::getParamName($params, 'google_app_id');
+		$googleAppSecret = modJoomHelper::getParamName($params, 'google_app_secret');
+		// @todo: this is exactly what we need:
+		// https://developers.google.com/+/web/signin/redirect-uri-flow
+		
+	}
 }
 ?>
