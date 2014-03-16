@@ -13,7 +13,7 @@
  */
 defined('_JEXEC') or die;
 
-class modJoomFacebookLoginHelper
+class modJoomHelper
 {
     /**
      * Retrieves the a param, depending on the name that the function accepts as name.
