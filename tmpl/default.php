@@ -1,7 +1,5 @@
 <?php // no direct access
 	defined('_JEXEC') or die('Restricted access'); 
-  JHTML::_('behavior.keepalive');
-  JHTML::_('behavior.modal');
 ?>
 
 <div class="<?php echo $params->get('moduleclass_sfx'); ?>">
