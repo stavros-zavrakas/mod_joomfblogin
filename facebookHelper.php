@@ -15,6 +15,60 @@ defined('_JEXEC') or die;
 
 class modJoomFacebookLoginHelper
 {  
+    public static function initFacebookSdk($appId, $secretAppId) 
+    {
+        $facebook = new Facebook(array(
+            'appId'  => $appId,
+            'secret' => $secretAppId,
+            'allowSignedRequest' => false
+        ));
+
+        return $facebook;
+    }
+
+    public static function initFacebookUser($facebook, $accessToken = null) 
+    {
+        if (isset($accessToken)) {
+            $facebook->setAccessToken($accessToken);
+        }
+
+        $fbuser = $facebook->getUser();
+
+        return $fbuser;
+    }
+
+    public static function loginFacebookUser($fbuser, $user, $facebook)
+    {
+        if ($fbuser && $user->guest)
+        {
+            try {
+                $fbuser = $facebook->api('/me');
+
+                $isJoomlaUser = modJoomHelper::getUserIdByParam('email', $fbuser['email']);
+
+                if(empty($isJoomlaUser)) 
+                {
+                    // Store the user object in the DB (register)
+                    jimport('joomla.user.helper');
+                    $password = JUserHelper::genRandomPassword(5);
+                    $joomlaUser = modJoomHelper::registerUser($fbuser['name'], $fbuser['username'], $password, $fbuser['email']);
+                }
+                else 
+                {
+                    // Retrieve the user object from DB
+                    $joomlaUser = JFactory::getUser($isJoomlaUser);
+                }
+                // Login the User
+
+                modJoomHelper::login($joomlaUser, $referer, $fbuser, $accessToken);
+            }
+            catch (FacebookApiException $e) {
+                // error_log($e);
+                $fbuser = null;
+            }
+        }
+    }
+
     public static function getDimensionByImageName($imageName) 
     {
         $fbDimenions = array(

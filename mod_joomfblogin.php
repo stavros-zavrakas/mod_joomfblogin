@@ -36,48 +36,9 @@ if(in_array("1", $socialEnabled, true)) {
 		$fbAppId = modJoomHelper::getParamName($params, 'fb_app_id');
 		$fbAppSecret = modJoomHelper::getParamName($params, 'fb_app_secret');
 		if($loginType == "facebook") {
-
-			$facebook = new Facebook(array(
-				'appId'  => $fbAppId,
-				'secret' => $fbAppSecret,
-				'allowSignedRequest' => false
-			));
-
-			if($accessToken) {
-				$facebook->setAccessToken($accessToken);
-			}
-
-			$fbuser = $facebook->getUser();
-
-			if ($fbuser && $accessToken && $user->guest)
-			{
-				
-				try {
-					$fbuser = $facebook->api('/me');
-
-					$isJoomlaUser = modJoomHelper::getUserIdByParam('email', $fbuser['email']);
-
-					if(empty($isJoomlaUser)) 
-					{
-						// Store the user object in the DB (register)
-						jimport('joomla.user.helper');
-						$password = JUserHelper::genRandomPassword(5);
-						$joomlaUser = modJoomHelper::registerUser($fbuser['name'], $fbuser['username'], $password, $fbuser['email']);
-					}
-					else 
-					{
-						// Retrieve the user object from DB
-						$joomlaUser = JFactory::getUser($isJoomlaUser);
-					}
-					// Login the User
-
-					modJoomHelper::login($joomlaUser, $referer, $fbuser, $accessToken);
-				}
-				catch (FacebookApiException $e) {
-					// error_log($e);
-					$fbuser = null;
-				}
-			}
+			$facebook = modJoomFacebookLoginHelper::initFacebookSdk($fbAppId, $fbAppSecret);
+			$fbuser = modJoomFacebookLoginHelper::initFacebookUser($facebook, $accessToken);
+			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook);
 		}
 		else 
 		{
