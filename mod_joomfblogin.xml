@@ -11,6 +11,7 @@
         <filename module="mod_joomfblogin">mod_joomfblogin.php</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
+        <filename>facebookHelper.php</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
@@ -25,6 +26,7 @@
     <config>
         <fields name="params">
             <fieldset name="Facebook">
+                <field name="fb_is_enabled" type="checkbox" label="Enable Facebook Login" description="Check if you want to enable facebook login for your website" value="true" default="0" />
                 <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the facebook Application Secret"/>
                 <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the facebook Application ID"/>
                 <field name="fbButtonText" type="text" label="Facebook Button Text" description="Please enter the text that you want to appear on the facebook button"/>
