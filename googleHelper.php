@@ -3,6 +3,20 @@ defined('_JEXEC') or die;
 
 class modJoomGoogleLoginHelper
 {
+
+	public static function initGoogleSdk($appId, $secretAppId) 
+    {
+        $google = new Google_Client();
+		$google->setApplicationName('Google+ server-side flow');
+		$google->setClientId($appId);
+		$google->setClientSecret($secretAppId);
+		$google->setRedirectUri('/');
+		// $google->setDeveloperKey('YOUR_SIMPLE_API_KEY');
+		$plus = new Google_PlusService($google);
+
+        return $facebook;
+    }
+
     public static function getDimensionByImageName($imageName) 
     {
         $googleDimenions = array(
@@ -52,18 +66,15 @@ class modJoomGoogleLoginHelper
 			var authResult = undefined;
 
 			return {
-				onSignInCallback: function(authResult) {
-					if (authResult["access_token"]) {
+				onSignInCallback: function(authResultResp) {
+					if (authResultResp["access_token"]) {
 						// The user is signed in
-						this.authResult = authResult;
+						authResult = authResultResp;
 						// After we load the Google+ API, render the profile data from Google+.
 						gapi.client.load("plus","v1",this.renderProfile);
-					} else if (authResult["error"]) {
+					} else if (authResultResp["error"]) {
 						// There was an error, which means the user is not signed in.
-						// As an example, you can troubleshoot by writing to the console:
-						console.log("There was an error: " + authResult["error"]);
 					}
-					console.log("authResult", authResult);
 				},
 
 				renderProfile: function() {
@@ -74,6 +85,7 @@ class modJoomGoogleLoginHelper
 							return;
 						}
 
+						window.location.href=document.URL + "?accessToken=" + authResult.access_token + "&type=google";
 						console.log("profile", profile);
 					});
 				},

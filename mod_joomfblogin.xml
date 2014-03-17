@@ -5,7 +5,8 @@
     <version>1.0.0</version>
     <description>A simple module that allows the users to login to a Joomla! website using Facebook.</description>
     <files>
-        <folder>src</folder>
+        <folder>fbSrc</folder>
+        <folder>google-api-php-client</folder>
         <folder>languages</folder>
         <filename>mod_joomfblogin.xml</filename>
         <filename module="mod_joomfblogin">mod_joomfblogin.php</filename>

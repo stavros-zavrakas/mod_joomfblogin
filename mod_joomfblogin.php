@@ -18,7 +18,8 @@ defined('_JEXEC') or die('Restricted access');
 require_once(dirname(__FILE__).'/helper.php');
 require_once(dirname(__FILE__).'/facebookHelper.php');
 require_once(dirname(__FILE__).'/googleHelper.php');
-require_once(dirname(__FILE__).'/src/facebook.php');
+require_once(dirname(__FILE__).'/fbSrc/facebook.php');
+// require_once(dirname(__FILE__).'/google-api-php-client/src/Google/Client.php');
  
 $socialEnabled = array();
 $socialEnabled['facebook'] = modJoomHelper::getParamName($params, 'fb_is_enabled');
@@ -55,12 +56,21 @@ if(in_array("1", $socialEnabled, true)) {
 	if(isset($socialEnabled['google'])) {
 		$socialData['google']['appId'] = modJoomHelper::getParamName($params, 'google_app_id');
 		$socialData['google']['appSecret'] = modJoomHelper::getParamName($params, 'google_app_secret');
-		// @todo: this is exactly what we need:
-		// https://developers.google.com/+/web/signin/redirect-uri-flow
-		
-		$socialData['google']['jsSdk'] = modJoomGoogleLoginHelper::loadGoogleJavascriptSdk();
-		$socialData['google']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
-		$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
+		if($loginType == "google") {
+			// @todo: this is exactly what we need:
+			// https://developers.google.com/+/web/signin/redirect-uri-flow
+			// 1) Init GooglePhpSDK.
+			// 2) GetUser Data.
+			// 3) Login/Register the user.
+
+			// $google = modJoomGoogleLoginHelper::initGoogleSdk($socialData['google']['appId'], $socialData['google']['appSecret']);
+		}
+		else
+		{
+			$socialData['google']['jsSdk'] = modJoomGoogleLoginHelper::loadGoogleJavascriptSdk();
+			$socialData['google']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
+			$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
+		}
 	}
 	require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
 }
