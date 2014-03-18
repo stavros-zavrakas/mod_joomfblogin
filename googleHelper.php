@@ -12,10 +12,55 @@ class modJoomGoogleLoginHelper
 		$google->setClientSecret($secretAppId);
 		$google->setRedirectUri('/');
 		// $google->setDeveloperKey('YOUR_SIMPLE_API_KEY');
-		$plus = new Google_PlusService($google);
 
-        return $facebook;
+        return $google;
     }
+
+    public static function initGoogleUser($google, $accessToken = null) 
+    {
+    	if (isset($accessToken)) {
+            $accessToken = array('access_token' => $accessToken, 'created' => time(), 'expires_in' => 3000);
+            $accessToken = json_encode($accessToken);
+            $google->setAccessToken($accessToken);
+        }
+    	
+				$plus = new Google_PlusService($google);
+				$googleUser = $plus->people->get('me');
+        
+        return $googleUser;
+	}
+
+	public static function loginGoogleUser($user, $googleUser)
+	{
+		if ($googleUser && $user->guest)
+        {
+            try {
+
+                $isJoomlaUser = modJoomHelper::getUserIdByParam('email', $googleUser['emails'][0]['value']);
+
+                if(empty($isJoomlaUser)) 
+                {
+                    // Store the user object in the DB (register)
+                    jimport('joomla.user.helper');
+                    $password = JUserHelper::genRandomPassword(5);
+                    $joomlaUser = modJoomHelper::registerUser($googleUser['displayName'], $googleUser['displayName'], $password, $googleUser['emails'][0]['value']);
+                }
+                else 
+                {
+                    // Retrieve the user object from DB
+                    $joomlaUser = JFactory::getUser($isJoomlaUser);
+                }
+                // Login the User
+
+                modJoomHelper::login($joomlaUser, $referer, $googleUser, $accessToken);
+            }
+            catch (FacebookApiException $e) {
+                // error_log($e);
+                $fbuser = null;
+            }
+        }
+	}
+	
 
     public static function getDimensionByImageName($imageName) 
     {

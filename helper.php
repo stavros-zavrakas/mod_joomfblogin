@@ -123,10 +123,10 @@ class modJoomHelper
         $db->setQuery($query);
         $db->query();
         
-        $user = JFactory::getUser();
-        $user->setParam('fb_uid', $fbuser['id']);
-        $user->setParam('fb_access_token', $fbAccessToken);
-        $user->save();
+        // $user = JFactory::getUser();
+        // $user->setParam('fb_uid', $fbuser['id']);
+        // $user->setParam('fb_access_token', $fbAccessToken);
+        // $user->save();
 
         $app->redirect($redirect);
     }

@@ -19,8 +19,12 @@ require_once(dirname(__FILE__).'/helper.php');
 require_once(dirname(__FILE__).'/facebookHelper.php');
 require_once(dirname(__FILE__).'/googleHelper.php');
 require_once(dirname(__FILE__).'/fbSrc/facebook.php');
-// require_once(dirname(__FILE__).'/google-api-php-client/src/Google/Client.php');
- 
+// set_include_path(__DIR__ . "/googleSrc/" . PATH_SEPARATOR . get_include_path());
+// require_once 'Google/Client.php';
+// require_once 'Google/PlusService.php';
+require_once(dirname(__FILE__).'/googleSrc/Google_Client.php');
+require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
+
 $socialEnabled = array();
 $socialEnabled['facebook'] = modJoomHelper::getParamName($params, 'fb_is_enabled');
 $socialEnabled['google'] = modJoomHelper::getParamName($params, 'google_is_enabled');
@@ -63,7 +67,9 @@ if(in_array("1", $socialEnabled, true)) {
 			// 2) GetUser Data.
 			// 3) Login/Register the user.
 
-			// $google = modJoomGoogleLoginHelper::initGoogleSdk($socialData['google']['appId'], $socialData['google']['appSecret']);
+			$google = modJoomGoogleLoginHelper::initGoogleSdk($socialData['google']['appId'], $socialData['google']['appSecret']);
+			$googleUser = modJoomGoogleLoginHelper::initGoogleUser($google, $accessToken);
+			modJoomGoogleLoginHelper::loginGoogleUser($user, $googleUser);
 		}
 		else
 		{
