@@ -15,6 +15,20 @@ defined('_JEXEC') or die;
 
 class modJoomHelper
 {
+
+    public static function initFacebookLibrary()
+    {
+        require_once(dirname(__FILE__).'/facebookHelper.php');
+        require_once(dirname(__FILE__).'/fbSrc/facebook.php');
+    }
+
+    public static function initGoogleLibrary()
+    {
+        require_once(dirname(__FILE__).'/googleHelper.php');
+        require_once(dirname(__FILE__).'/googleSrc/Google_Client.php');
+        require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
+    }
+
     /**
      * Retrieves the a param, depending on the name that the function accepts as name.
      *

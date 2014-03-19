@@ -33,8 +33,7 @@ if(in_array("1", $socialEnabled, true)) {
 	$referer = modJoomHelper::getReferer();
 
 	if(isset($socialEnabled['facebook'])) {
-		require_once(dirname(__FILE__).'/facebookHelper.php');
-		require_once(dirname(__FILE__).'/fbSrc/facebook.php');
+		modJoomHelper::initFacebookLibrary();
 		$socialData['facebook'] = array();
 		$socialData['facebook']['appId'] = modJoomHelper::getParamName($params, 'fb_app_id');
 		$socialData['facebook']['appSecret'] = modJoomHelper::getParamName($params, 'fb_app_secret');
@@ -52,9 +51,7 @@ if(in_array("1", $socialEnabled, true)) {
 	}
 
 	if(isset($socialEnabled['google'])) {
-		require_once(dirname(__FILE__).'/googleHelper.php');
-		require_once(dirname(__FILE__).'/googleSrc/Google_Client.php');
-		require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
+		modJoomHelper::initGoogleLibrary();
 		$socialData['google']['appId'] = modJoomHelper::getParamName($params, 'google_app_id');
 		$socialData['google']['appSecret'] = modJoomHelper::getParamName($params, 'google_app_secret');
 		if($loginType == "google") {

@@ -14,7 +14,7 @@
 defined('_JEXEC') or die;
 
 class modJoomFacebookLoginHelper
-{  
+{
     public static function initFacebookSdk($appId, $secretAppId) 
     {
         $facebook = new Facebook(array(
@@ -28,7 +28,8 @@ class modJoomFacebookLoginHelper
 
     public static function initFacebookUser($facebook, $accessToken = null) 
     {
-        if (isset($accessToken)) {
+        if (isset($accessToken)) 
+        {
             $facebook->setAccessToken($accessToken);
         }
 
