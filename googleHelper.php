@@ -107,6 +107,7 @@ class modJoomGoogleLoginHelper
     public static function generateJsLoginScript()
     {
     	$script = '
+        var first_run = true;
     	var helper = (function() {
 			var authResult = undefined;
 
@@ -137,7 +138,10 @@ class modJoomGoogleLoginHelper
 			};
 		})();
 		function onSignInCallback(authResult) {
-			helper.onSignInCallback(authResult);
+            if(!first_run) {
+			    helper.onSignInCallback(authResult);
+            }
+            first_run = false;
 		}
 		';
 
