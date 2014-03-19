@@ -16,14 +16,6 @@
 defined('_JEXEC') or die('Restricted access');
 // Include the syndicate functions only once
 require_once(dirname(__FILE__).'/helper.php');
-require_once(dirname(__FILE__).'/facebookHelper.php');
-require_once(dirname(__FILE__).'/googleHelper.php');
-require_once(dirname(__FILE__).'/fbSrc/facebook.php');
-// set_include_path(__DIR__ . "/googleSrc/" . PATH_SEPARATOR . get_include_path());
-// require_once 'Google/Client.php';
-// require_once 'Google/PlusService.php';
-require_once(dirname(__FILE__).'/googleSrc/Google_Client.php');
-require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
 
 $socialEnabled = array();
 $socialEnabled['facebook'] = modJoomHelper::getParamName($params, 'fb_is_enabled');
@@ -41,13 +33,15 @@ if(in_array("1", $socialEnabled, true)) {
 	$referer = modJoomHelper::getReferer();
 
 	if(isset($socialEnabled['facebook'])) {
+		require_once(dirname(__FILE__).'/facebookHelper.php');
+		require_once(dirname(__FILE__).'/fbSrc/facebook.php');
 		$socialData['facebook'] = array();
 		$socialData['facebook']['appId'] = modJoomHelper::getParamName($params, 'fb_app_id');
 		$socialData['facebook']['appSecret'] = modJoomHelper::getParamName($params, 'fb_app_secret');
 		if($loginType == "facebook") {
 			$facebook = modJoomFacebookLoginHelper::initFacebookSdk($socialData['facebook']['appId'], $socialData['facebook']['appSecret']);
 			$fbuser = modJoomFacebookLoginHelper::initFacebookUser($facebook, $accessToken);
-			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook);
+			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook, $accessToken);
 		}
 		else 
 		{
@@ -58,18 +52,15 @@ if(in_array("1", $socialEnabled, true)) {
 	}
 
 	if(isset($socialEnabled['google'])) {
+		require_once(dirname(__FILE__).'/googleHelper.php');
+		require_once(dirname(__FILE__).'/googleSrc/Google_Client.php');
+		require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
 		$socialData['google']['appId'] = modJoomHelper::getParamName($params, 'google_app_id');
 		$socialData['google']['appSecret'] = modJoomHelper::getParamName($params, 'google_app_secret');
 		if($loginType == "google") {
-			// @todo: this is exactly what we need:
-			// https://developers.google.com/+/web/signin/redirect-uri-flow
-			// 1) Init GooglePhpSDK.
-			// 2) GetUser Data.
-			// 3) Login/Register the user.
-
 			$google = modJoomGoogleLoginHelper::initGoogleSdk($socialData['google']['appId'], $socialData['google']['appSecret']);
 			$googleUser = modJoomGoogleLoginHelper::initGoogleUser($google, $accessToken);
-			modJoomGoogleLoginHelper::loginGoogleUser($user, $googleUser);
+			modJoomGoogleLoginHelper::loginGoogleUser($user, $googleUser, $accessToken);
 		}
 		else
 		{

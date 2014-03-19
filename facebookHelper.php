@@ -37,7 +37,7 @@ class modJoomFacebookLoginHelper
         return $fbuser;
     }
 
-    public static function loginFacebookUser($fbuser, $user, $facebook)
+    public static function loginFacebookUser($fbuser, $user, $facebook, $accessToken)
     {
         if ($fbuser && $user->guest)
         {
@@ -60,7 +60,7 @@ class modJoomFacebookLoginHelper
                 }
                 // Login the User
 
-                modJoomHelper::login($joomlaUser, $referer, $fbuser, $accessToken);
+                modJoomHelper::login($joomlaUser, $referer, 'fb', $fbuser['id'], $accessToken);
             }
             catch (FacebookApiException $e) {
                 // error_log($e);
@@ -83,12 +83,15 @@ class modJoomFacebookLoginHelper
 
     public static function generateFacebookButton($params)
     {
-        $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
-        $fbButtonName = modJoomHelper::getParamName($params, 'fbButton');
-        $fbButtonArgs = modJoomHelper::getDimensionByImageName($fbButtonName);
-        $fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
-        $fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
-        $fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
+        // $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
+        // $fbButtonName = modJoomHelper::getParamName($params, 'fbButton');
+        // $fbButtonArgs = modJoomHelper::getDimensionByImageName($fbButtonName);
+        // $fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
+        // $fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
+        // $fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
+
+        // $fbButton = '<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="facebookLogin();"></div>';
+        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="xlarge" scope="email, user_birthday, user_about_me, user_likes, publish_actions">Sign in</fb:login-button>';
 
         return $fbButton;
     }
@@ -117,17 +120,55 @@ class modJoomFacebookLoginHelper
             jQuery("body").append(joomFbSdk);
         }
 
+        function facebookLogin()
+        {
+            FB.getLoginStatus(function(response) {
+                if (response.status === \'connected\') {
+                    var accessToken = response.authResponse.accessToken;
+                    fetchFbUserData(accessToken);
+                } 
+                else 
+                {
+                    initiateFbLogin();
+                }
+            });
+        }
+
+        function initiateFbLogin()
+        {
+            FB.login(function(response) {
+                if (response.authResponse) 
+                {
+                    var accessToken = response.authResponse.accessToken;
+                    fetchFbUserData(accessToken);
+                } 
+                else
+                {
+                    //User cancelled login or did not fully authorize.
+                }
+            }, {
+                scope: "email, user_birthday, user_about_me, user_likes, publish_actions"
+            });
+        }
+
+        function fetchFbUserData(accessToken)
+        {
+            FB.api("/me", function(response) {
+                window.location.href=document.URL + "?accessToken=" + accessToken + "&type=facebook";
+            });
+        }
 
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : ' . $facebookAppId . ',
                 status     : true,
+                cookie     : true,
                 xfbml      : true
             });
 
-            jQuery(".facebook-login").click(function(event) {
-                event.preventDefault();
-
+            // jQuery(".facebook-login").click(function(event) {
+            //    event.preventDefault();
+            function facebookLogin() {
                 FB.login(function(response) {
                     if (response.authResponse) 
                     {
@@ -143,7 +184,8 @@ class modJoomFacebookLoginHelper
                 }, {
                     scope: "email, user_birthday, user_about_me, user_likes, publish_actions"
                 });
-            });
+            }
+            // });
         };
         ';
 

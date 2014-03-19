@@ -95,7 +95,7 @@ class modJoomHelper
         return $user;
     }
 
-    public static function login($joomlaUser, $redirect, $fbuser, $fbAccessToken) {
+    public static function login($joomlaUser, $redirect, $socialPrefix, $socialUid, $accessToken) {
         $db     = JFactory::getDbo();
         $query = "SELECT password FROM #__users WHERE id='" . $joomlaUser->id . "';";
         $db->setQuery($query);
@@ -123,10 +123,10 @@ class modJoomHelper
         $db->setQuery($query);
         $db->query();
         
-        // $user = JFactory::getUser();
-        // $user->setParam('fb_uid', $fbuser['id']);
-        // $user->setParam('fb_access_token', $fbAccessToken);
-        // $user->save();
+        $user = JFactory::getUser();
+        $user->setParam($socialPrefix . '_uid', $socialUid);
+        $user->setParam($socialPrefix . '_access_token', $accessToken);
+        $user->save();
 
         $app->redirect($redirect);
     }

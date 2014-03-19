@@ -27,9 +27,9 @@
 				// $document->addScriptDeclaration('var ' . $key . 'isFacebookEnabled = true;');
 				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
 
+				echo $socialNetwork['button'] . '<br><br>';
 				$document->addScriptDeclaration($socialNetwork['jsSdk']);
 				$document->addScriptDeclaration($socialNetwork['jsLoginScript']);
-				echo $socialNetwork['button'];
 			}
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
 			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');

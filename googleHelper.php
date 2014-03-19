@@ -30,7 +30,7 @@ class modJoomGoogleLoginHelper
         return $googleUser;
 	}
 
-	public static function loginGoogleUser($user, $googleUser)
+	public static function loginGoogleUser($user, $googleUser, $accessToken)
 	{
 		if ($googleUser && $user->guest)
         {
@@ -52,7 +52,7 @@ class modJoomGoogleLoginHelper
                 }
                 // Login the User
 
-                modJoomHelper::login($joomlaUser, $referer, $googleUser, $accessToken);
+                modJoomHelper::login($joomlaUser, $referer, 'google', $googleUser['id'], $accessToken);
             }
             catch (FacebookApiException $e) {
                 // error_log($e);
