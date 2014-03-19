@@ -69,29 +69,11 @@ class modJoomFacebookLoginHelper
         }
     }
 
-    public static function getDimensionByImageName($imageName) 
-    {
-        $fbDimenions = array(
-            '01FacebookButtonXLarge.png' => array('width' => '300px', 'height' => '66px'),
-            '02FacebookButtonLarge.png' => array('width' => '260px', 'height' => '57px'),
-            '03FacebookButtonMedium.png' => array('width' => '220px', 'height' => '48px'),
-            '04FacebookButtonSmall.png' => array('width' => '180px', 'height' => '39px')
-        );
-        
-        return $fbDimenions[$imageName]; 
-    }
-
     public static function generateFacebookButton($params)
     {
-        // $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
-        // $fbButtonName = modJoomHelper::getParamName($params, 'fbButton');
-        // $fbButtonArgs = modJoomHelper::getDimensionByImageName($fbButtonName);
-        // $fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
-        // $fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
-        // $fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
-
-        // $fbButton = '<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="facebookLogin();"></div>';
-        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="xlarge" scope="email, user_birthday, user_about_me, user_likes, publish_actions">Sign in</fb:login-button>';
+        $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
+        $fbButtonSize = modJoomHelper::getParamName($params, 'fbButton');
+        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="' . $fbButtonSize . '" scope="email, user_birthday, user_about_me, user_likes, publish_actions">' . $fbButtonText . '</fb:login-button>';
 
         return $fbButton;
     }
