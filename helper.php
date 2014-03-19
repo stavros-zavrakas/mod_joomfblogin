@@ -27,7 +27,8 @@ class modJoomHelper
         return $params->get($name);
     }
 
-    public static function getUserIdByParam($param, $email) {
+    public static function getUserIdByParam($param, $email) 
+    {
         $db     = JFactory::getDbo();
         $query = "SELECT id FROM #__users WHERE " . $param . "='" . $email . "';";
         $db->setQuery($query);
@@ -36,35 +37,27 @@ class modJoomHelper
         return $jUser;
     }
 
-    public static function getReferer() {
+    public static function getReferer() 
+    {
         $url = JRequest::getURI();
         $url = preg_replace('/([?&])fbAccessToken=[^&]+(&|$)/','',$url);
 
         return $url[0];
     }
 
-    public static function getDimensionByImageName($imageName) 
+    public static function getJquery() 
     {
-        $fbDimenions = array(
-            '01FacebookButtonXLarge.png' => array('width' => '300px', 'height' => '66px'),
-            '02FacebookButtonLarge.png' => array('width' => '260px', 'height' => '57px'),
-            '03FacebookButtonMedium.png' => array('width' => '220px', 'height' => '48px'),
-            '04FacebookButtonSmall.png' => array('width' => '180px', 'height' => '39px')
-        );
-        
-        return $fbDimenions[$imageName]; 
-    }
+        $jquery  = "if (typeof jQuery == 'undefined')";
+        $jquery .= "{";
+        $jquery .= "    var head = document.getElementsByTagName(\"head\")[0]; ";
+        $jquery .= "    script = document.createElement('script'); ";
+        $jquery .= "    script.id = 'jQuery'; ";
+        $jquery .= "    script.type = 'text/javascript'; ";
+        $jquery .= "    script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'; ";
+        $jquery .= "    head.appendChild(script); ";
+        $jquery .= "}";
 
-    public static function generateFacebookButton($params)
-    {
-        $fbButtonText = modJoomFacebookLoginHelper::getParamName($params, 'fbButtonText');
-        $fbButtonName = modJoomFacebookLoginHelper::getParamName($params, 'fbButton');
-        $fbButtonArgs = modJoomFacebookLoginHelper::getDimensionByImageName($fbButtonName);
-        $fbButtonUrl = JURI::root() . 'media/mod_joomfblogin/img/' . $fbButtonName;
-        $fbButtonStyle = 'style="width: ' . $fbButtonArgs['width'] . '; height: ' . $fbButtonArgs['height'] . '; background-image:url(' . $fbButtonUrl . ');"';
-        $fbButton = '<div class="login facebook-login" ' . $fbButtonStyle . '><div class="facebook-text">' . $fbButtonText . '</div></div>';
-
-        return $fbButton;
+        return $jquery;
     }
 
     public static function registerUser($name, $username, $password, $email) {

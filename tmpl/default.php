@@ -24,15 +24,14 @@
 		{
 			$document = JFactory::getDocument();
 			foreach ($socialData as $key => $socialNetwork) {
-				// $document->addScriptDeclaration('var ' . $key . 'isFacebookEnabled = true;');
 				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
 
 				echo $socialNetwork['button'] . '<br><br>';
 				$document->addScriptDeclaration($socialNetwork['jsSdk']);
 				$document->addScriptDeclaration($socialNetwork['jsLoginScript']);
 			}
-			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_functions.js');
-			$document->addScript(JURI::root() . 'media/mod_joomfblogin/js/mod_joomfblogin_facebook.js');
+			$jquery = modJoomHelper::getJquery();
+			$document->addScriptDeclaration($jquery);
 			$document->addStyleSheet(JURI::root() . 'media/mod_joomfblogin/css/style.css');
 		}
 	?>
