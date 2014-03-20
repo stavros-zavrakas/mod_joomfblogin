@@ -38,7 +38,7 @@ class modJoomFacebookLoginHelper
         return $fbuser;
     }
 
-    public static function loginFacebookUser($fbuser, $user, $facebook, $accessToken)
+    public static function loginFacebookUser($fbuser, $user, $facebook, $accessToken, $referer)
     {
         if ($fbuser && $user->guest)
         {
@@ -137,7 +137,7 @@ class modJoomFacebookLoginHelper
         function fetchFbUserData(accessToken)
         {
             FB.api("/me", function(response) {
-                window.location.href=document.URL + "?accessToken=" + accessToken + "&type=facebook";
+                window.location.href=document.URL + "?mod=log&accessToken=" + accessToken + "&type=facebook";
             });
         }
 

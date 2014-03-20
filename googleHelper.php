@@ -30,7 +30,7 @@ class modJoomGoogleLoginHelper
         return $googleUser;
 	}
 
-	public static function loginGoogleUser($user, $googleUser, $accessToken)
+	public static function loginGoogleUser($user, $googleUser, $accessToken, $referer)
 	{
 		if ($googleUser && $user->guest)
         {
@@ -119,7 +119,7 @@ class modJoomGoogleLoginHelper
 							return;
 						}
 
-						window.location.href=document.URL + "?accessToken=" + authResult.access_token + "&type=google";
+						window.location.href=document.URL + "?mod=log&accessToken=" + authResult.access_token + "&type=google";
 						console.log("profile", profile);
 					});
 				},

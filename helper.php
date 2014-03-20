@@ -54,7 +54,7 @@ class modJoomHelper
     public static function getReferer() 
     {
         $url = JRequest::getURI();
-        $url = preg_replace('/([?&])fbAccessToken=[^&]+(&|$)/','',$url);
+        $url = explode("?mod=log", $url);
 
         return $url[0];
     }

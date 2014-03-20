@@ -40,7 +40,7 @@ if(in_array("1", $socialEnabled, true)) {
 		if($loginType == "facebook") {
 			$facebook = modJoomFacebookLoginHelper::initFacebookSdk($socialData['facebook']['appId'], $socialData['facebook']['appSecret']);
 			$fbuser = modJoomFacebookLoginHelper::initFacebookUser($facebook, $accessToken);
-			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook, $accessToken);
+			modJoomFacebookLoginHelper::loginFacebookUser($fbuser, $user, $facebook, $accessToken, $referer);
 		}
 		else 
 		{
@@ -57,7 +57,7 @@ if(in_array("1", $socialEnabled, true)) {
 		if($loginType == "google") {
 			$google = modJoomGoogleLoginHelper::initGoogleSdk($socialData['google']['appId'], $socialData['google']['appSecret']);
 			$googleUser = modJoomGoogleLoginHelper::initGoogleUser($google, $accessToken);
-			modJoomGoogleLoginHelper::loginGoogleUser($user, $googleUser, $accessToken);
+			modJoomGoogleLoginHelper::loginGoogleUser($user, $googleUser, $accessToken, $referer);
 		}
 		else
 		{
