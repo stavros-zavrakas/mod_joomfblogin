@@ -63,6 +63,7 @@ if(in_array("1", $socialEnabled, true)) {
 		{
 			$socialData['google']['jsSdk'] = modJoomGoogleLoginHelper::loadGoogleJavascriptSdk($socialData['google']['appId']);
 			$socialData['google']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
+			$socialData['google']['cssScript'] = modJoomGoogleLoginHelper::generateCssScript();
 			$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
 		}
 	}
