@@ -44,10 +44,10 @@
                 </field>
             </fieldset>
             <fieldset name="Google">
-                <field name="google_is_enabled" type="checkbox" label="Enable Google Login" description="Check if you want to enable google login for your website" value="true" default="0" />
-                <field name="google_app_secret" type="text" label="Google App Secret" description="Please enter the Google Application Secret"/>
-                <field name="google_app_id" type="text" label="Google AppId" description="Please enter the Google Application ID"/>
-                <field name="googleButtonText" type="text" label="Google Button Text" description="Please enter the text that you want to appear on the google button"/>
+                <field name="google_is_enabled" type="checkbox" label="GOOGLE_ENABLED_LABEL" description="GOOGLE_ENABLED_DESC" value="true" default="0" />
+                <field name="google_app_secret" type="text" label="GOOGLE_APP_SECRET_LABEL" description="GOOGLE_APP_SECRET_DESC"/>
+                <field name="google_app_id" type="text" label="GOOGLE_APP_ID_LABEL" description="GOOGLE_APP_ID_DESC"/>
+                <field name="googleButtonText" type="text" label="GOOGLE_BUTTON_TEXT_LABEL" description="GOOGLE_BUTTON_TEXT_DESC"/>
             </fieldset>
         </fields>
     </config>
