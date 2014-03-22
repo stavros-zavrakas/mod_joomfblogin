@@ -64,29 +64,58 @@ class modJoomGoogleLoginHelper
     public static function generateGoogleButton($params, $appId)
     {
         // @todo: maybe helpful to customize the button
-    	$googleButton  = '<button class="g-signin"';
-	    $googleButton .= 'data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"';
-	    $googleButton .= 'data-requestvisibleactions="http://schemas.google.com/AddActivity"';
-	    $googleButton .= 'data-clientId="' . $appId . '"';
-	    $googleButton .= 'data-accesstype="offline"';
-	    $googleButton .= 'data-callback="onSignInCallback"';
-	    $googleButton .= 'data-theme="dark"';
-	    $googleButton .= 'data-cookiepolicy="single_host_origin">';
-    	$googleButton .= '</button>';
+    	// $googleButton  = '<button class="g-signin"';
+	    // $googleButton .= 'data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"';
+	    // $googleButton .= 'data-requestvisibleactions="http://schemas.google.com/AddActivity"';
+	    // $googleButton .= 'data-clientId="' . $appId . '"';
+	    // $googleButton .= 'data-accesstype="offline"';
+	    // $googleButton .= 'data-callback="onSignInCallback"';
+	    // $googleButton .= 'data-theme="dark"';
+	    // $googleButton .= 'data-cookiepolicy="single_host_origin">';
+    	// $googleButton .= '</button>';
+
+		$googleButton  = '
+			<div id="gSignInWrapper">
+				<div id="customBtn" class="customGPlusSignIn">
+					<span class="icon"></span>
+					<span class="buttonText">Google</span>
+				</div>
+			</div>';
 
         return $googleButton;
     }
 
-    public static function loadGoogleJavascriptSdk()
+    public static function loadGoogleJavascriptSdk($appId)
     {
     	$script = '
     	(function() {
 			var po = document.createElement(\'script\');
 			po.type = \'text/javascript\'; po.async = true;
-			po.src = \'https://plus.google.com/js/client:plusone.js\';
+			po.src = \'https://plus.google.com/js/client:plusone.js?onload=render\';
 			var s = document.getElementsByTagName(\'script\')[0];
 			s.parentNode.insertBefore(po, s);
 		})();
+
+		/* Executed when the APIs finish loading */
+		function render() {
+			var additionalParams = {
+				// \'callback\': \'onSignInCallback\',
+				\'clientid\': "' . $appId . '",
+				\'cookiepolicy\': \'single_host_origin\',
+				\'accesstype\' : \'"offline"\',
+				\'requestvisibleactions\': \'http://schemas.google.com/AddActivity\',
+				\'scope\': \'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read\'
+			};
+
+			gapi.signin.render(\'googleButton\', additionalParams);
+
+			additionalParams.callback = \'onSignInCallback\';
+
+			var signinButton = document.getElementById(\'customBtn\');
+			signinButton.addEventListener(\'click\', function() {
+				gapi.auth.signIn(additionalParams); // Will use page level configuration
+			});
+		}
 		';
 
 		return $script;
@@ -127,7 +156,7 @@ class modJoomGoogleLoginHelper
 		})();
 		function onSignInCallback(authResult) {
             if(!first_run) {
-			    helper.onSignInCallback(authResult);
+			    // helper.onSignInCallback(authResult);
             }
             first_run = false;
 		}
