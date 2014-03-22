@@ -2,9 +2,9 @@
 /**
  * Hello World! Module Entry Point
  * 
- * @package    Joomla.Tutorials
- * @subpackage Modules
- * @link http://dev.joomla.org/component/option,com_jd-wiki/Itemid,31/id,tutorials:modules/
+ * @package    	Joomla.Site
+ * @subpackage 	Modules
+ * @link 		http://dev.joomla.org/component/option,com_jd-wiki/Itemid,31/id,tutorials:modules/
  * @license        GNU/GPL, see LICENSE.php
  * mod_joomfblogin is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or

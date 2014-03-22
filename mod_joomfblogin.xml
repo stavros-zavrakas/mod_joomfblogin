@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>JoomFacebookLogin!</name>
+    <name>JoomSocialLogin!</name>
     <author>Stavros Zavrakas</author>
-    <version>1.0.0</version>
-    <description>A simple module that allows the users to login to a Joomla! website using Facebook.</description>
+    <creationDate>22.03.2014</creationDate>
+    <copyright>(C) 2014 - 2014 Stavros Zavrakas</copyright>
+    <license>This module is released under the GNU/GPL License</license>
+    <authorEmail>stavros@zavrakas.me</authorEmail>
+    <authorUrl>stavros.zavrakas.gr</authorUrl>
+    <version>1.0.0 BETA1</version>
+    <description>MOD_JOOMSOCIAL_DESC</description>
     <files>
         <folder>fbSrc</folder>
         <folder>googleSrc</folder>
@@ -22,26 +27,27 @@
     </languages>
     <config>
         <fields name="params">
+            <fieldset name="General">
+                <field name="moduleclass_sfx" type="text" label="GENERAL_CLASS_SUFFIX_LABEL" description="GENERAL_CLASS_SUFFIX_DESC"/>
+            </fieldset>
             <fieldset name="Facebook">
-                <field name="fb_is_enabled" type="checkbox" label="Enable Facebook Login" description="Check if you want to enable facebook login for your website" value="true" default="0" />
-                <field name="fb_app_secret" type="text" label="Facebook App Secret" description="Please enter the Facebook Application Secret"/>
-                <field name="fb_app_id" type="text" label="Facebook AppId" description="Please enter the Facebook Application ID"/>
-                <field name="fbButtonText" type="text" label="Facebook Button Text" description="Please enter the text that you want to appear on the facebook button"/>
-                <field name="fbButton" type="list" default="xlarge" label="Select size of the button" description="">
-                    <option value="icon">Icon</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="xlarge">X-Large</option>
+                <field name="fb_is_enabled" type="checkbox" label="FACEBOOK_ENABLED_LABEL" description="FACEBOOK_ENABLED_DESC" value="true" default="0" />
+                <field name="fb_app_secret" type="text" label="FACEBOOK_APP_SECRET_LABEL" description="FACEBOOK_APP_SECRET_DESC"/>
+                <field name="fb_app_id" type="text" label="" description=""/>
+                <field name="fbButtonText" type="text" label="FACEBOOK_BUTTON_TEXT_LABEL" description="FACEBOOK_BUTTON_TEXT_DESC"/>
+                <field name="fbButton" type="list" default="xlarge" label="FACEBOOK_BUTTON_SIZE_LABEL" description="">
+                    <option value="icon">FACEBOOK_BUTTON_SIZE_OP1</option>
+                    <option value="small">FACEBOOK_BUTTON_SIZE_OP2</option>
+                    <option value="medium">FACEBOOK_BUTTON_SIZE_OP3</option>
+                    <option value="large">FACEBOOK_BUTTON_SIZE_OP4</option>
+                    <option value="xlarge">FACEBOOK_BUTTON_SIZE_OP5</option>
                 </field>
-                <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
             </fieldset>
             <fieldset name="Google">
                 <field name="google_is_enabled" type="checkbox" label="Enable Google Login" description="Check if you want to enable google login for your website" value="true" default="0" />
                 <field name="google_app_secret" type="text" label="Google App Secret" description="Please enter the Google Application Secret"/>
                 <field name="google_app_id" type="text" label="Google AppId" description="Please enter the Google Application ID"/>
                 <field name="googleButtonText" type="text" label="Google Button Text" description="Please enter the text that you want to appear on the google button"/>
-                <field name="moduleclass_sfx" type="text" label="Module Class Suffix" description="Please enter Module Class Suffix"/>
             </fieldset>
         </fields>
     </config>
