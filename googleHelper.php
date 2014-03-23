@@ -175,7 +175,7 @@ class modJoomGoogleLoginHelper
 				font-weight: bold;
 		    }
 		    span.icon {
-		    	background: url(\'' . JURI::base().'modules/' . $moduleName . '/tmpl/img/btn_red_32.png\') transparent 5px 50% no-repeat;
+		    	background: url(\'' . JURI::root() . 'media/mod_joomsocialogin/images/btn_red_32.png\') transparent 5px 50% no-repeat;
 				display: inline-block;
 				vertical-align: middle;
 				width: 35px;

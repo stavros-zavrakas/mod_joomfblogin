@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>JoomSocialLogin!</name>
+    <name>JoomSociaLogin!</name>
     <author>Stavros Zavrakas</author>
     <creationDate>22.03.2014</creationDate>
     <copyright>(C) 2014 - 2014 Stavros Zavrakas</copyright>
@@ -25,6 +25,9 @@
     <languages>
         <language tag="en-GB">languages/en-GB.mod_joomfblogin.ini</language>
     </languages>
+    <media folder="media" destination="mod_joomsocialogin">
+        <folder>images</folder>
+    </media>
     <config>
         <fields name="params">
             <fieldset name="General">
