@@ -1,12 +1,13 @@
 <?php
 /**
- * Hello World! Module Entry Point
+ * Joomla Social Login!
  * 
- * @package    	Joomla.Site
- * @subpackage 	Modules
- * @link 		http://dev.joomla.org/component/option,com_jd-wiki/Itemid,31/id,tutorials:modules/
- * @license        GNU/GPL, see LICENSE.php
- * mod_joomfblogin is free software. This version may have been modified pursuant
+ * @package        Joomla
+ * @subpackage     Modules
+ * @link           http://joomla.zavrakas.me/
+ * @license        GNU/GPL, see http://www.gnu.org/licenses/gpl.html
+ * @author         Stavros Zavrakas <stavros@zavrakas.me>
+ * mod_joomsociallogin is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
  * is derivative of works licensed under the GNU General Public License or
  * other free or open source software licenses.
