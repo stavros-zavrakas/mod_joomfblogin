@@ -24,8 +24,8 @@ class modJoomGoogleLoginHelper
             $google->setAccessToken($accessToken);
         }
     	
-				$plus = new Google_PlusService($google);
-				$googleUser = $plus->people->get('me');
+		$plus = new Google_PlusService($google);
+		$googleUser = $plus->people->get('me');
         
         return $googleUser;
 	}
@@ -63,22 +63,14 @@ class modJoomGoogleLoginHelper
 
     public static function generateGoogleButton($params, $appId)
     {
-        // @todo: maybe helpful to customize the button
-    	// $googleButton  = '<button class="g-signin"';
-	    // $googleButton .= 'data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read"';
-	    // $googleButton .= 'data-requestvisibleactions="http://schemas.google.com/AddActivity"';
-	    // $googleButton .= 'data-clientId="' . $appId . '"';
-	    // $googleButton .= 'data-accesstype="offline"';
-	    // $googleButton .= 'data-callback="onSignInCallback"';
-	    // $googleButton .= 'data-theme="dark"';
-	    // $googleButton .= 'data-cookiepolicy="single_host_origin">';
-    	// $googleButton .= '</button>';
+		$googleButton = modJoomHelper::getParamName($params, 'googleButton');
+		$googleButtonText = modJoomHelper::getParamName($params, 'googleButtonText');
 
 		$googleButton  = '
 			<div id="gSignInWrapper">
-				<div id="customBtn" class="customGPlusSignIn">
+				<div id="customBtn" class="customGPlusSignIn google-' . $googleButton . '">
 					<span class="icon"></span>
-					<span class="buttonText">Google</span>
+					<span class="buttonText">' . $googleButtonText . '</span>
 				</div>
 			</div>';
 
@@ -172,8 +164,7 @@ class modJoomGoogleLoginHelper
 				display: inline-block;
 				background: #dd4b39;
 				color: white;
-				width: 165px;
-				border-radius: 5px;
+				border-radius: 2px;
 				white-space: nowrap;
 		    }
 		    #customBtn:hover {
@@ -188,18 +179,26 @@ class modJoomGoogleLoginHelper
 				display: inline-block;
 				vertical-align: middle;
 				width: 35px;
-				height: 35px;
+				height: 39px;
 				border-right: #bb3f30 1px solid;
+				background-size: 90%;
 		    }
 		    span.buttonText {
 				display: inline-block;
 				vertical-align: middle;
-				padding-left: 35px;
-				padding-right: 35px;
-				font-size: 14px;
+				padding-left: 2px;
+				padding-right: 10px;
+				font-size: 24px;
 				font-weight: bold;
 				/* Use the Roboto font that is loaded in the <head> */
 				font-family: \'Roboto\',arial,sans-serif;
+		    }
+		    .google-large .icon {
+				width: 19px;
+				height: 25px;
+		    }
+		    .google-large .buttonText {
+		    	font-size: 13px;
 		    }
 		'; 
 

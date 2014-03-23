@@ -36,9 +36,11 @@
                 <field name="fb_app_id" type="text" label="FACEBOOK_APP_ID_LABEL" description="FACEBOOK_APP_ID_DESC"/>
                 <field name="fbButtonText" type="text" label="FACEBOOK_BUTTON_TEXT_LABEL" description="FACEBOOK_BUTTON_TEXT_DESC"/>
                 <field name="fbButton" type="list" default="xlarge" label="FACEBOOK_BUTTON_SIZE_LABEL" description="">
+                    <!-- 
                     <option value="icon">BUTTON_SIZE_OP1</option>
                     <option value="small">BUTTON_SIZE_OP2</option>
                     <option value="medium">BUTTON_SIZE_OP3</option>
+                     -->
                     <option value="large">BUTTON_SIZE_OP4</option>
                     <option value="xlarge">BUTTON_SIZE_OP5</option>
                 </field>
@@ -49,9 +51,11 @@
                 <field name="google_app_id" type="text" label="GOOGLE_APP_ID_LABEL" description="GOOGLE_APP_ID_DESC"/>
                 <field name="googleButtonText" type="text" label="GOOGLE_BUTTON_TEXT_LABEL" description="GOOGLE_BUTTON_TEXT_DESC"/>
                 <field name="googleButton" type="list" default="xlarge" label="GOOGLE_BUTTON_SIZE_LABEL" description="">
+                    <!-- 
                     <option value="icon">BUTTON_SIZE_OP1</option>
                     <option value="small">BUTTON_SIZE_OP2</option>
                     <option value="medium">BUTTON_SIZE_OP3</option>
+                     -->
                     <option value="large">BUTTON_SIZE_OP4</option>
                     <option value="xlarge">BUTTON_SIZE_OP5</option>
                 </field>
