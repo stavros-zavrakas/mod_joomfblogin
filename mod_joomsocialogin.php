@@ -67,6 +67,6 @@ if(in_array("1", $socialEnabled, true)) {
 			$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
 		}
 	}
-	require(JModuleHelper::getLayoutPath('mod_joomfblogin'));
+	require(JModuleHelper::getLayoutPath('mod_joomsocialogin'));
 }
 ?>
