@@ -33,14 +33,14 @@
             <fieldset name="Facebook">
                 <field name="fb_is_enabled" type="checkbox" label="FACEBOOK_ENABLED_LABEL" description="FACEBOOK_ENABLED_DESC" value="true" default="0" />
                 <field name="fb_app_secret" type="text" label="FACEBOOK_APP_SECRET_LABEL" description="FACEBOOK_APP_SECRET_DESC"/>
-                <field name="fb_app_id" type="text" label="" description=""/>
+                <field name="fb_app_id" type="text" label="FACEBOOK_APP_ID_LABEL" description="FACEBOOK_APP_ID_DESC"/>
                 <field name="fbButtonText" type="text" label="FACEBOOK_BUTTON_TEXT_LABEL" description="FACEBOOK_BUTTON_TEXT_DESC"/>
                 <field name="fbButton" type="list" default="xlarge" label="FACEBOOK_BUTTON_SIZE_LABEL" description="">
-                    <option value="icon">FACEBOOK_BUTTON_SIZE_OP1</option>
-                    <option value="small">FACEBOOK_BUTTON_SIZE_OP2</option>
-                    <option value="medium">FACEBOOK_BUTTON_SIZE_OP3</option>
-                    <option value="large">FACEBOOK_BUTTON_SIZE_OP4</option>
-                    <option value="xlarge">FACEBOOK_BUTTON_SIZE_OP5</option>
+                    <option value="icon">BUTTON_SIZE_OP1</option>
+                    <option value="small">BUTTON_SIZE_OP2</option>
+                    <option value="medium">BUTTON_SIZE_OP3</option>
+                    <option value="large">BUTTON_SIZE_OP4</option>
+                    <option value="xlarge">BUTTON_SIZE_OP5</option>
                 </field>
             </fieldset>
             <fieldset name="Google">
@@ -48,6 +48,13 @@
                 <field name="google_app_secret" type="text" label="GOOGLE_APP_SECRET_LABEL" description="GOOGLE_APP_SECRET_DESC"/>
                 <field name="google_app_id" type="text" label="GOOGLE_APP_ID_LABEL" description="GOOGLE_APP_ID_DESC"/>
                 <field name="googleButtonText" type="text" label="GOOGLE_BUTTON_TEXT_LABEL" description="GOOGLE_BUTTON_TEXT_DESC"/>
+                <field name="googleButton" type="list" default="xlarge" label="GOOGLE_BUTTON_SIZE_LABEL" description="">
+                    <option value="icon">BUTTON_SIZE_OP1</option>
+                    <option value="small">BUTTON_SIZE_OP2</option>
+                    <option value="medium">BUTTON_SIZE_OP3</option>
+                    <option value="large">BUTTON_SIZE_OP4</option>
+                    <option value="xlarge">BUTTON_SIZE_OP5</option>
+                </field>
             </fieldset>
         </fields>
     </config>
