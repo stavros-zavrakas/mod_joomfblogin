@@ -24,6 +24,7 @@
     </files>
     <languages>
         <language tag="en-GB">languages/en-GB.mod_joomsocialogin.ini</language>
+        <language tag="el-GR">languages/el-GR.mod_joomsocialogin.ini</language>
     </languages>
     <media folder="media" destination="mod_joomsocialogin">
         <folder>images</folder>
