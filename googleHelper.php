@@ -148,7 +148,7 @@ class modJoomGoogleLoginHelper
 		})();
 		function onSignInCallback(authResult) {
             if(!first_run) {
-			    // helper.onSignInCallback(authResult);
+			    helper.onSignInCallback(authResult);
             }
             first_run = false;
 		}
