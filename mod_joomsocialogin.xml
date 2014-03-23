@@ -47,6 +47,8 @@
                     <option value="large">BUTTON_SIZE_OP4</option>
                     <option value="xlarge">BUTTON_SIZE_OP5</option>
                 </field>
+                <field name="fbPermissionsNote" type="note" label="FACEBOOK_PERMISSIONS_NOTE" description="FACEBOOK_PERMISSIONS_NOTE_DESC" />
+                <field name="fb_publish_actions" type="checkbox" label="FACEBOOK_PERMISSIONS_PUBLISH_ACTIONS" description="FACEBOOK_PERMISSIONS_PUBLISH_ACTIONS_DESC" value="true" default="0" />
             </fieldset>
             <fieldset name="Google">
                 <field name="google_is_enabled" type="checkbox" label="GOOGLE_ENABLED_LABEL" description="GOOGLE_ENABLED_DESC" value="true" default="0" />

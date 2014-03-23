@@ -44,9 +44,11 @@ if(in_array("1", $socialEnabled, true)) {
 		}
 		else 
 		{
+			$permissions = modJoomFacebookLoginHelper::getFacebookPermissions($params);
+			
 			$socialData['facebook']['jsSdk'] = modJoomFacebookLoginHelper::loadFacebookJavascriptSdk();
 			$socialData['facebook']['jsLoginScript'] = modJoomFacebookLoginHelper::generateJsLoginScript($socialData['facebook']['appId']);
-			$socialData['facebook']['button'] = modJoomFacebookLoginHelper::generateFacebookButton($params);
+			$socialData['facebook']['button'] = modJoomFacebookLoginHelper::generateFacebookButton($params, $permissions);
 		}
 	}
 

@@ -70,13 +70,33 @@ class modJoomFacebookLoginHelper
         }
     }
 
-    public static function generateFacebookButton($params)
+    public static function generateFacebookButton($params, $permissions)
     {
+        $permissionsStr = implode(",", $permissions);
+        error_log("permissionsStr: " . $permissionsStr);
+
         $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
         $fbButtonSize = modJoomHelper::getParamName($params, 'fbButton');
-        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="' . $fbButtonSize . '" scope="email, user_birthday, user_about_me, user_likes, publish_actions">' . $fbButtonText . '</fb:login-button>';
+        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="' . $fbButtonSize . '" scope="' . $permissionsStr . '">' . $fbButtonText . '</fb:login-button>';
 
         return $fbButton;
+    }
+
+    public static function getFacebookPermissions($params)
+    {
+        $permissions = array();
+        $permissions[] = "email";
+        $permissions[] = "user_birthday";
+        $permissions[] = "user_about_me";
+        $permissions[] = "user_likes";
+
+        $publish_actions = modJoomHelper::getParamName($params, 'fb_publish_actions');
+        if($publish_actions) 
+        { 
+            $permissions[] = "publish_actions"; 
+        }
+
+        return $permissions;
     }
 
     public static function loadFacebookJavascriptSdk()
