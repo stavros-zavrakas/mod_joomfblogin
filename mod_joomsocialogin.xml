@@ -19,6 +19,7 @@
         <filename>helper.php</filename>
         <filename>facebookHelper.php</filename>
         <filename>googleHelper.php</filename>
+        <filename>linkedInHelper.php</filename>
         <filename>tmpl/default.php</filename>
         <filename>tmpl/index.html</filename>
     </files>
@@ -57,6 +58,21 @@
                 <field name="google_app_id" type="text" label="GOOGLE_APP_ID_LABEL" description="GOOGLE_APP_ID_DESC"/>
                 <field name="googleButtonText" type="text" label="GOOGLE_BUTTON_TEXT_LABEL" description="GOOGLE_BUTTON_TEXT_DESC"/>
                 <field name="googleButton" type="list" default="xlarge" label="GOOGLE_BUTTON_SIZE_LABEL" description="">
+                    <!-- 
+                    <option value="icon">BUTTON_SIZE_OP1</option>
+                    <option value="small">BUTTON_SIZE_OP2</option>
+                    <option value="medium">BUTTON_SIZE_OP3</option>
+                     -->
+                    <option value="large">BUTTON_SIZE_OP4</option>
+                    <option value="xlarge">BUTTON_SIZE_OP5</option>
+                </field>
+            </fieldset>
+            <fieldset name="LinkedIn">
+                <field name="linkedIn_is_enabled" type="checkbox" label="LINKEDIN_ENABLED_LABEL" description="LINKEDIN_ENABLED_DESC" value="true" default="0" />
+                <field name="linkedIn_app_secret" type="text" label="LINKEDIN_APP_SECRET_LABEL" description="LINKEDIN_APP_SECRET_DESC"/>
+                <field name="linkedIn_app_id" type="text" label="LINKEDIN_APP_ID_LABEL" description="LINKEDIN_APP_ID_DESC"/>
+                <field name="linkedInButtonText" type="text" label="LINKEDIN_BUTTON_TEXT_LABEL" description="LINKEDIN_BUTTON_TEXT_DESC"/>
+                <field name="linkedInButton" type="list" default="xlarge" label="LINKEDIN_BUTTON_SIZE_LABEL" description="">
                     <!-- 
                     <option value="icon">BUTTON_SIZE_OP1</option>
                     <option value="small">BUTTON_SIZE_OP2</option>

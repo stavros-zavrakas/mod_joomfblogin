@@ -21,6 +21,7 @@ require_once(dirname(__FILE__).'/helper.php');
 $socialEnabled = array();
 $socialEnabled['facebook'] = modJoomHelper::getParamName($params, 'fb_is_enabled');
 $socialEnabled['google'] = modJoomHelper::getParamName($params, 'google_is_enabled');
+$socialEnabled['linkedIn'] = modJoomHelper::getParamName($params, 'linkedIn_is_enabled');
 
 // If we have at least on of the social logins enabled, we need the logic in the if statement.
 if(in_array("1", $socialEnabled, true)) {
@@ -70,6 +71,11 @@ if(in_array("1", $socialEnabled, true)) {
 			$socialData['google']['button'] = modJoomGoogleLoginHelper::generateGoogleButton($params, $socialData['google']['appId']);
 		}
 	}
+
+	if(isset($socialEnabled['linkedIn'])) {
+
+	}
+
 	require(JModuleHelper::getLayoutPath('mod_joomsocialogin'));
 }
 ?>
