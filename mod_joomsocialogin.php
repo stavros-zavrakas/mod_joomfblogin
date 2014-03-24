@@ -73,7 +73,21 @@ if(in_array("1", $socialEnabled, true)) {
 	}
 
 	if(isset($socialEnabled['linkedIn'])) {
-
+		// @todo: init php linkedIn sdk
+		$socialData['linkedIn']['appId'] = modJoomHelper::getParamName($params, 'linkedIn_app_id');
+		$socialData['linkedIn']['appSecret'] = modJoomHelper::getParamName($params, 'linkedIn_app_secret');
+		if($loginType == "linkedIn") 
+		{
+			// @todo: Do all the server side process
+			
+		}
+		else
+		{
+			$socialData['linkedIn']['jsSdk'] = modJoomGoogleLoginHelper::loadLinkedInJavascriptSdk($socialData['linkedIn']['appId']);
+			$socialData['linkedIn']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
+			$socialData['linkedIn']['cssScript'] = modJoomGoogleLoginHelper::generateCssScript($module->module);
+			$socialData['linkedIn']['button'] = modJoomGoogleLoginHelper::generateLinkedInButton($params, $socialData['linkedIn']['appId']);
+		}
 	}
 
 	require(JModuleHelper::getLayoutPath('mod_joomsocialogin'));
