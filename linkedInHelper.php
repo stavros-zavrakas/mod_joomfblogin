@@ -6,17 +6,58 @@ class modJoomGoogleLoginHelper
 
 	public static function initLinkedInSdk($appId, $secretAppId) 
     {
-        
+		$linkedin = new LinkedIn(array(
+			'apiKey' => $appId,
+			'apiSecret' => $secretAppId,
+			'callbackUrl' => '/',
+		));
+
+		return $linkedin;
     }
 
     public static function initLinkedInUser($linkedIn, $accessToken = null) 
     {
-    	
+    	if (isset($accessToken)) 
+        {
+            $linkedIn->setAccessToken($accessToken);
+        }
+
+		$options = ":(id,first-name,last-name,picture-url,email-address)";
+		$linkedInUser = $linkedin->get('/people/~', $options);
+
+		return $linkedInUser;
 	}
 
 	public static function loginLinkedInUser($user, $linkedInUser, $accessToken, $referer)
 	{
-		
+		if ($linkedInUser && $user->guest)
+        {
+            try {
+
+            	// @todo: Verify that is the correcte params that we have to send to retrieve the mail
+                $isJoomlaUser = modJoomHelper::getUserIdByParam('emailAddress', $linkedInUser['values'][0]);
+
+                if(empty($isJoomlaUser)) 
+                {
+                    // Store the user object in the DB (register)
+                    jimport('joomla.user.helper');
+                    $password = JUserHelper::genRandomPassword(5);
+                    $joomlaUser = modJoomHelper::registerUser($linkedInUser['displayName'], $linkedInUser['displayName'], $password, $linkedInUser['values'][0]);
+                }
+                else 
+                {
+                    // Retrieve the user object from DB
+                    $joomlaUser = JFactory::getUser($isJoomlaUser);
+                }
+                // Login the User
+
+                modJoomHelper::login($joomlaUser, $referer, 'linkedIn', $linkedInUser['id'], $accessToken);
+            }
+            catch (FacebookApiException $e) {
+                // error_log($e);
+                $linkedInUser = null;
+            }
+        }
 	}
 
     public static function generateLinkedInButton($params, $appId)

@@ -29,6 +29,12 @@ class modJoomHelper
         require_once(dirname(__FILE__).'/googleSrc/contrib/Google_PlusService.php');
     }
 
+    public static function initLinkedInLibrary()
+    {
+        require_once(dirname(__FILE__).'/linkedInHelper.php');
+        require_once(dirname(__FILE__).'/linkedinSrc/linkedin.php');
+    }
+
     /**
      * Retrieves the a param, depending on the name that the function accepts as name.
      *
