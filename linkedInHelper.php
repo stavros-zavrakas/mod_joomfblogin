@@ -74,6 +74,10 @@ class modJoomLinkedInLoginHelper
 			</script>
 		';
 
+        $linkedInButton  = '
+            <input type="button" onclick="onLinkedInLoad()" value="Sign in LinkedIn" />
+        ';
+
         return $linkedInButton;
     }
 
@@ -85,7 +89,6 @@ class modJoomLinkedInLoginHelper
 			<script type="text/javascript" src="http://platform.linkedin.com/in.js">
 				api_key: ' . $appId . '
 				credentials_cookie: true
-                onLoad: onLinkedInLoad
 			</script>
 		';
 
@@ -113,10 +116,8 @@ class modJoomLinkedInLoginHelper
 			}
 
             function onLinkedInLoad() {
-                // Use a larger login icon.
-                jQuery("a[id*=li_ui_li_gen_]").css({marginBottom:"20px"});
-                jQuery("span[id$=\'title-text\']").html("Sign In").addClass(\'linkedIn-x-large\').removeAttr(\'id\');
-                jQuery("span[id$=\'-title\']").addClass(\'linkedIn-x-large\');
+                IN.UI.Authorize().place();      
+                IN.Event.on(IN, "auth", function () { onLinkedInAuth(); });
             }
 		';
 
