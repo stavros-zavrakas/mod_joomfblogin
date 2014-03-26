@@ -70,13 +70,17 @@ class modJoomLinkedInLoginHelper
         // You can use data-size as small, medium, and large to resize the Button
         // Ex. <script type="IN/Login" data-size="large" data-onAuth="onLinkedInAuth">
 		$linkedInButton  = '
-			<script type="in/Login" data-size="large" title="Sign in" data-onAuth="onLinkedInAuth">
-			</script>
+            <a href="#" id="linkedInBase" class="x-large" onclick="onLinkedInLoad(); return false;">
+                <span class="linkedin-icon"></span>
+                <span class="linkedin-button-text">Sign In</span>
+            </a>
 		';
 
-        $linkedInButton  = '
-            <input type="button" onclick="onLinkedInLoad()" value="Sign in LinkedIn" />
-        ';
+        // $linkedInButton  = '
+        //     <a class="btn btn-block btn-social btn-twitter">
+        //         <i class="fa fa-twitter"></i> Sign in with Twitter
+        //     </a>
+        // ';
 
         return $linkedInButton;
     }
@@ -128,10 +132,44 @@ class modJoomLinkedInLoginHelper
     {
     	// Implement all the logic to override the default linkedIn button.
     	$style = '
-            .linkedIn-x-large {
-                font-size: 24px !important;
-                width: 93px;
-                height: 39px !important;
+            .x-large {
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: 2px;
+                padding-right: 10px;
+                font-size: 23px;
+                font-weight: bold;
+            }
+
+            #linkedInBase {
+                border-style:none;
+                display: inline-block;
+                background: #007BB6;
+                color: white;
+                border-radius: 2px;
+                white-space: nowrap;
+                min-width: 124px;
+                height: 39px;
+            }
+
+            a#linkedInBase:hover {
+                color: white;
+                text-decoration: none;
+            }
+
+            span.linkedin-icon {
+                background: url(\'http://dev.joomla.gr/media/mod_joomsocialogin/images/linked-in.png\') transparent 5px 50% no-repeat;
+                display: inline-block;
+                vertical-align: middle;
+                width: 35px;
+                height: 39px;
+                border-right: #006DA1 1px solid;
+                background-size: 90%;
+            }
+
+            span.linkedin-button-text {
+                display: inline-block;
+                vertical-align: middle;
             }
 		'; 
 
