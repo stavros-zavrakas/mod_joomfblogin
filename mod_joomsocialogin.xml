@@ -12,6 +12,7 @@
     <files>
         <folder>fbSrc</folder>
         <folder>googleSrc</folder>
+        <folder>linkedinSrc</folder>
         <folder>languages</folder>
         <filename>mod_joomsocialogin.xml</filename>
         <filename module="mod_joomsocialogin">mod_joomsocialogin.php</filename>
