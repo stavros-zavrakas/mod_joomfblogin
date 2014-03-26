@@ -85,6 +85,7 @@ class modJoomLinkedInLoginHelper
 			<script type="text/javascript" src="http://platform.linkedin.com/in.js">
 				api_key: ' . $appId . '
 				credentials_cookie: true
+                onLoad: onLinkedInLoad
 			</script>
 		';
 
@@ -110,6 +111,13 @@ class modJoomLinkedInLoginHelper
 			function displayProfilesErrors(profiles) {
 				alert("ERRORS");
 			}
+
+            function onLinkedInLoad() {
+                // Use a larger login icon.
+                jQuery("a[id*=li_ui_li_gen_]").css({marginBottom:"20px"});
+                jQuery("span[id$=\'title-text\']").html("Sign In").addClass(\'linkedIn-x-large\').removeAttr(\'id\');
+                jQuery("span[id$=\'-title\']").addClass(\'linkedIn-x-large\');
+            }
 		';
 
 		return $script;
@@ -119,6 +127,11 @@ class modJoomLinkedInLoginHelper
     {
     	// Implement all the logic to override the default linkedIn button.
     	$style = '
+            .linkedIn-x-large {
+                font-size: 24px !important;
+                width: 93px;
+                height: 39px !important;
+            }
 		'; 
 
 		return $style;
