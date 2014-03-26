@@ -77,7 +77,7 @@ class modJoomFacebookLoginHelper
 
         $fbButtonText = modJoomHelper::getParamName($params, 'fbButtonText');
         $fbButtonSize = modJoomHelper::getParamName($params, 'fbButton');
-        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="' . $fbButtonSize . '" scope="' . $permissionsStr . '">' . $fbButtonText . '</fb:login-button>';
+        $fbButton = '<fb:login-button  onlogin="facebookLogin();"  size="' . $fbButtonSize . '" scope="' . $permissionsStr . '">' . $fbButtonText . '</fb:login-button><br>';
 
         return $fbButton;
     }

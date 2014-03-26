@@ -26,7 +26,7 @@
 			foreach ($socialData as $key => $socialNetwork) {
 				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
 
-				echo $socialNetwork['button'] . '<br><br>';
+				echo $socialNetwork['button'] . '<br>';
 				if(isset($socialNetwork['jsSdk-src'])) {
 					echo $socialNetwork['jsSdk-src'];
 				} else {
