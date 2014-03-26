@@ -22,9 +22,10 @@ class modJoomLinkedInLoginHelper
             $linkedIn->setAccessToken($accessToken);
         }
 
-		$options = ":(id,first-name,last-name,picture-url,email-address)";
-		$linkedInUser = $linkedin->get('/people/~', $options);
-
+		$options = ":(first-name,last-name,picture-url)";
+		$linkedInUser = $linkedIn->get('/people/~', $options);
+echo $linkedInUser;
+die;
 		return $linkedInUser;
 	}
 
@@ -65,10 +66,10 @@ class modJoomLinkedInLoginHelper
 		$linkedInButton = modJoomHelper::getParamName($params, 'linkedInButton');
 		$linkedInButtonText = modJoomHelper::getParamName($params, 'linkedInButtonText');
 
-		// @todo: somehow we must include the src on the return vars. Right now is not a valid JS code with
-    	// the HTML tags in the string.
+		// @todo: modify the text: http://forums.asp.net/t/1931746.aspx?Customizing+Linkedin+Login+Button
+    // Last response
 		$linkedInButton  = '
-			<script type="in/Login" data-onAuth="onLinkedInAuth">
+			<script type="in/Login" data-size="large" title="Sign in" data-onAuth="onLinkedInAuth">
 				Hello, <?js= firstName ?> <?js= lastName ?>. </br>
 			</script>
 		';
@@ -103,7 +104,7 @@ class modJoomLinkedInLoginHelper
 			function displayProfiles(profiles) {
 				member = profiles.values[0];
 				
-				// @todo: Here we have to redirect if we have all the data that we need.
+                window.location.href=document.URL + "?mod=log&accessToken=" + IN.ENV.auth.oauth_token + "&type=linkedIn";
 			}
 
 			function displayProfilesErrors(profiles) {

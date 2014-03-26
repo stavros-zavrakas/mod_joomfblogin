@@ -78,7 +78,6 @@ if(in_array("1", $socialEnabled, true)) {
 		$socialData['linkedIn']['appSecret'] = modJoomHelper::getParamName($params, 'linkedIn_app_secret');
 		if($loginType == "linkedIn") 
 		{
-			// @todo: Do all the server side process
 			$linkedIn = modJoomLinkedInLoginHelper::initLinkedInSdk($socialData['linkedIn']['appId'], $socialData['linkedIn']['appSecret']);
 			$linkedInUser = modJoomLinkedInLoginHelper::initLinkedInUser($linkedIn, $accessToken);
 			modJoomLinkedInLoginHelper::loginLinkedInUser($user, $googleUser, $accessToken, $referer);
