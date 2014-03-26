@@ -78,7 +78,7 @@ class LinkedIn
 	public function makeRequest($method, $request, $params=array(), $format = 'json') 
 	{
 		$oauth_params = array(
-			'oauth2_access_token' => $this->_accessToken,
+			'oauth_token' => $this->_accessToken,
 			'format' => $format,
 		);
 		

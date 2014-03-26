@@ -22,10 +22,8 @@ class modJoomLinkedInLoginHelper
             $linkedIn->setAccessToken($accessToken);
         }
 
-		$options = ":(first-name,last-name,picture-url)";
-		$linkedInUser = $linkedIn->get('/people/~', $options);
-echo $linkedInUser;
-die;
+		$linkedInUser = $linkedIn->get('/people/~:(id,first-name,last-name,headline,picture-url,email-address)', array());
+
 		return $linkedInUser;
 	}
 
@@ -34,16 +32,15 @@ die;
 		if ($linkedInUser && $user->guest)
         {
             try {
-
-            	// @todo: Verify that is the correcte params that we have to send to retrieve the mail
-                $isJoomlaUser = modJoomHelper::getUserIdByParam('emailAddress', $linkedInUser['values'][0]);
+                $isJoomlaUser = modJoomHelper::getUserIdByParam('email', $linkedInUser->emailAddress);
 
                 if(empty($isJoomlaUser)) 
                 {
                     // Store the user object in the DB (register)
                     jimport('joomla.user.helper');
                     $password = JUserHelper::genRandomPassword(5);
-                    $joomlaUser = modJoomHelper::registerUser($linkedInUser['displayName'], $linkedInUser['displayName'], $password, $linkedInUser['values'][0]);
+                    $name = $linkedInUser->firstName . " " . $linkedInUser->lastName;
+                    $joomlaUser = modJoomHelper::registerUser($name, $name, $password, $linkedInUser->emailAddress);
                 }
                 else 
                 {
@@ -51,8 +48,7 @@ die;
                     $joomlaUser = JFactory::getUser($isJoomlaUser);
                 }
                 // Login the User
-
-                modJoomHelper::login($joomlaUser, $referer, 'linkedIn', $linkedInUser['id'], $accessToken);
+                modJoomHelper::login($joomlaUser, $referer, 'linkedIn', $linkedInUser->id, $accessToken);
             }
             catch (FacebookApiException $e) {
                 // error_log($e);
@@ -67,10 +63,14 @@ die;
 		$linkedInButtonText = modJoomHelper::getParamName($params, 'linkedInButtonText');
 
 		// @todo: modify the text: http://forums.asp.net/t/1931746.aspx?Customizing+Linkedin+Login+Button
-    // Last response
+        // Last response
+        
+        // LinkedIn button sizes
+        // https://developer.linkedin.com/thread/3290
+        // You can use data-size as small, medium, and large to resize the Button
+        // Ex. <script type="IN/Login" data-size="large" data-onAuth="onLinkedInAuth">
 		$linkedInButton  = '
 			<script type="in/Login" data-size="large" title="Sign in" data-onAuth="onLinkedInAuth">
-				Hello, <?js= firstName ?> <?js= lastName ?>. </br>
 			</script>
 		';
 

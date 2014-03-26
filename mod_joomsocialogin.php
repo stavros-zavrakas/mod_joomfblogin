@@ -80,7 +80,7 @@ if(in_array("1", $socialEnabled, true)) {
 		{
 			$linkedIn = modJoomLinkedInLoginHelper::initLinkedInSdk($socialData['linkedIn']['appId'], $socialData['linkedIn']['appSecret']);
 			$linkedInUser = modJoomLinkedInLoginHelper::initLinkedInUser($linkedIn, $accessToken);
-			modJoomLinkedInLoginHelper::loginLinkedInUser($user, $googleUser, $accessToken, $referer);
+			modJoomLinkedInLoginHelper::loginLinkedInUser($user, $linkedInUser, $accessToken, $referer);
 		}
 		else
 		{
