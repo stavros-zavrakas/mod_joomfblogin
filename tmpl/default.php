@@ -27,7 +27,12 @@
 				$document->addScriptDeclaration('var ' . $key . 'AppId = "' . $socialNetwork['appId'] . '";');
 
 				echo $socialNetwork['button'] . '<br><br>';
-				$document->addScriptDeclaration($socialNetwork['jsSdk']);
+				if(isset($socialNetwork['jsSdk-src'])) {
+					echo $socialNetwork['jsSdk-src'];
+				} else {
+					$document->addScriptDeclaration($socialNetwork['jsSdk']);
+				}
+
 				$document->addScriptDeclaration($socialNetwork['jsLoginScript']);
 				if(isset($socialNetwork['cssScript']))
 				{

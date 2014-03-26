@@ -79,16 +79,16 @@ if(in_array("1", $socialEnabled, true)) {
 		if($loginType == "linkedIn") 
 		{
 			// @todo: Do all the server side process
-			$linkedIn = modJoomGoogleLoginHelper::initLinkedInSdk($socialData['linkedIn']['appId'], $socialData['linkedIn']['appSecret']);
-			$linkedInUser = modJoomGoogleLoginHelper::initLinkedInUser($linkedIn, $accessToken);
-			modJoomGoogleLoginHelper::loginLinkedInUser($user, $googleUser, $accessToken, $referer);
+			$linkedIn = modJoomLinkedInLoginHelper::initLinkedInSdk($socialData['linkedIn']['appId'], $socialData['linkedIn']['appSecret']);
+			$linkedInUser = modJoomLinkedInLoginHelper::initLinkedInUser($linkedIn, $accessToken);
+			modJoomLinkedInLoginHelper::loginLinkedInUser($user, $googleUser, $accessToken, $referer);
 		}
 		else
 		{
-			$socialData['linkedIn']['jsSdk'] = modJoomGoogleLoginHelper::loadLinkedInJavascriptSdk($socialData['linkedIn']['appId']);
-			$socialData['linkedIn']['jsLoginScript'] = modJoomGoogleLoginHelper::generateJsLoginScript();
-			$socialData['linkedIn']['cssScript'] = modJoomGoogleLoginHelper::generateCssScript($module->module);
-			$socialData['linkedIn']['button'] = modJoomGoogleLoginHelper::generateLinkedInButton($params, $socialData['linkedIn']['appId']);
+			$socialData['linkedIn']['jsSdk-src'] = modJoomLinkedInLoginHelper::loadLinkedInJavascriptSdk($socialData['linkedIn']['appId']);
+			$socialData['linkedIn']['jsLoginScript'] = modJoomLinkedInLoginHelper::generateJsLoginScript();
+			$socialData['linkedIn']['cssScript'] = modJoomLinkedInLoginHelper::generateCssScript($module->module);
+			$socialData['linkedIn']['button'] = modJoomLinkedInLoginHelper::generateLinkedInButton($params, $socialData['linkedIn']['appId']);
 		}
 	}
 

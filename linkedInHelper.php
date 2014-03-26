@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class modJoomGoogleLoginHelper
+class modJoomLinkedInLoginHelper
 {
 
 	public static function initLinkedInSdk($appId, $secretAppId) 
@@ -102,7 +102,6 @@ class modJoomGoogleLoginHelper
 
 			function displayProfiles(profiles) {
 				member = profiles.values[0];
-				data.user = member;
 				
 				// @todo: Here we have to redirect if we have all the data that we need.
 			}
