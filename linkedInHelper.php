@@ -153,7 +153,7 @@ class modJoomLinkedInLoginHelper
             }
 
             span.linkedin-icon {
-                background: url(\'http://dev.joomla.gr/media/mod_joomsocialogin/images/linked-in.png\') transparent 5px 50% no-repeat;
+                background: url(\'' . JURI::root() . 'media/mod_joomsocialogin/images/linked-in.png\') transparent 5px 50% no-repeat;
                 display: inline-block;
                 vertical-align: middle;
                 border-right: #006DA1 1px solid;
